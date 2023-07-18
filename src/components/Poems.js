@@ -3,7 +3,7 @@ import Picture from '../assets/profile.jpg'
 import { useState } from "react";
 
 const Poems = ()=>{
-    const [poemTray, setPoemTray] = useState([0,1,1,2,3,3])
+    const [poemTray, setPoemTray] = useState([0,1,1,3])
     return (
         <Fragment>
             <div className="row w-100">
