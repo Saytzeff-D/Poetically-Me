@@ -11,9 +11,9 @@ const Dashboard = ()=>{
             <div className="bg-poet-board">
                 <div className="container py-5">
                     <div className="d-flex justify-content-between">
-                        <p className="brand-text fs-1 fw-light">
-                            PoeticallyMe
-                        </p>
+                    <a href="/" className="brand-text text-decoration-none fs-1 fw-light">
+                        PoeticallyMe
+                    </a>
                         <p className="fw-light fs-2">
                             User
                         </p>

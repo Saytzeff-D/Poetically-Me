@@ -1,13 +1,15 @@
 import React from "react";
 import { Fragment } from "react";
+import { useNavigate } from "react-router";
 
 const Login = ()=>{
+    const navigate = useNavigate()
     return (
         <Fragment>
             <div className="container py-5">
-                <p className="brand-text fs-1 fw-light">
+                <a href="/" className="brand-text text-decoration-none fs-1 fw-light">
                     PoeticallyMe
-                </p>
+                </a>
                 <hr />
                 <p className="fs-4 fw-normal">
                     Login
@@ -25,7 +27,7 @@ const Login = ()=>{
                         <a href="/" className="py-1 text-decoration-none">
                             Forgot your password?
                         </a>
-                        <button className="btn d-block my-2 btn-secondary fs-6 fw-light">
+                        <button onClick={()=>navigate('/poet-board')} className="btn d-block my-2 btn-secondary fs-6 fw-light">
                             Login
                         </button>
                     </form>

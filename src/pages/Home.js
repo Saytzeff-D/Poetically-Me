@@ -7,9 +7,9 @@ const Home = ()=>{
         <Fragment>
             <div className="container-fluid m-0 bg-secondary pb-5">
                 <div className="d-flex justify-content-between pt-2">
-                    <p className="brand-text fw-bolder fs-3">
+                    <a href="/" className="brand-text text-decoration-none fs-1 fw-light">
                         PoeticallyMe
-                    </p>
+                    </a>
                     <p className="text-white">
                         Already a member? 
                          <button onClick={()=>navigate('/login')} className="mx-1 btn btn-light shadow">
@@ -17,7 +17,7 @@ const Home = ()=>{
                         </button>
                     </p>
                 </div>
-                <div className="bg-secondary text-white p-5 m-0 text-center">
+                <div className="text-white p-5 m-0 text-center">
                     <p className="fs-1 fw-bold">
                         Join the largest poetry community
                     </p>

@@ -1,12 +1,14 @@
 import React, { Fragment } from "react";
+import { useNavigate } from "react-router";
 
 const Register = ()=>{
+    const navigate = useNavigate()
     return (
         <Fragment>
             <div className="container py-5">        
-                <p className="brand-text fs-1 fw-light">
+                <a href="/" className="brand-text text-decoration-none fs-1 fw-light">
                     PoeticallyMe
-                </p>
+                </a>
                 <hr />
                 <p className="fs-4 fw-normal">
                     Publish your poetry online
@@ -30,7 +32,7 @@ const Register = ()=>{
                         <label className="fw-light">Password</label>
                         <input className="form-control" placeholder="Create a Password" />
                     </div>
-                    <button className="btn btn-secondary text-white btn-lg fs-5">
+                    <button onClick={()=>navigate('/login')} className="btn btn-secondary text-white btn-lg fs-5">
                         Join Now
                     </button>
                 </form>
