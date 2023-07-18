@@ -3,3 +3,21 @@
     color: #AB9768 !important;
     font-family: 'Pacifico', cursive;
 }
+.btn-join {
+    background-color: #AB9768 !important;
+}
+.bg-login {
+    background-color: #F0ECE0 !important;
+}
+.nav-link.active {
+    background-color: #AB9768 !important;
+    color: white !important; 
+    border-radius: 0% !important;
+}
+.bg-poem {
+    background-color: #F5F3EE !important;
+}
+.bg-poet-board {
+    background: #FAF6EA !important;
+    background-attachment: fixed;
+}
