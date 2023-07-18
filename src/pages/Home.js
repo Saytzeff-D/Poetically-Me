@@ -17,10 +17,32 @@ const Home = ()=>{
                     <button className="btn btn-light fw-lighter">Publish your poem now</button>
                 </div>
             </div>
-            <div className="border border-secondary">
-                <p className="text-center pt-4 fs-4 fw-light">Made for any poet - from beginners to experts</p>
+            <div className="container">
+                <p className="text-center pt-2 fs-4 fw-light">Made for any poet - from beginners to experts</p>
                 <p className="text-center fs-5 fw-lighter">Encouragement with friendly comments</p>
+                <p className="fw-light fs-5">Trending Poetry</p>
+                <div className="row w-100 mb-5">
+                    <div className="col-md-4">
+                        <div className="card shadow p-3">
+                            <p>Lorem Ipsumjjfsnvj</p>
+                            <p><i className="fa fa-comment-o"></i> 23 comments</p>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="card shadow p-3">
+                            <p>Lorem Ipsumjjfsnvj</p>
+                            <p><i className="fa fa-comment-o"></i> 23 comments</p>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <div className="card shadow p-3">
+                            <p>Lorem Ipsumjjfsnvj</p>
+                            <p><i className="fa fa-comment-o"></i> 23 comments</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <p className="text-center fw-lighter fs-6">&copy; 2023</p>
         </Fragment>
     )
 }
