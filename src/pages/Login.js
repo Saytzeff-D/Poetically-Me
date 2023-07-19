@@ -1,49 +1,34 @@
 import React from "react";
-import { Fragment } from "react";
-import { useNavigate } from "react-router";
+import Logo from '../assets/poetically-me.png'
 
 const Login = ()=>{
-    const navigate = useNavigate()
     return (
-        <Fragment>
-            <div className="container py-5">
-                <a href="/" className="brand-text text-decoration-none fs-1 fw-light">
-                    PoeticallyMe
-                </a>
-                <hr />
-                <p className="fs-4 fw-normal">
-                    Login
+        <div className="d-flex justify-content-center pt-5 mt-4">
+            <div className="col-md-3 text-center">
+                <img src={Logo} className="img-fluid" />
+                <p className="fw-bold fs-4">
+                    Sign in to your account
                 </p>
-                <div className="bg-login border-1 rounded my-2 p-3">
-                    <form className="p-5">
-                        <div className="form-group col-md-5">
-                            <label className="fw-light">Email/Pen Name</label>
-                            <input className="form-control" />
-                        </div>
-                        <div className="form-group col-md-5">
-                            <label className="fw-light">Password</label>
-                            <input className="form-control" />
-                        </div>
-                        <a href="/" className="py-1 text-decoration-none">
-                            Forgot your password?
-                        </a>
-                        <button onClick={()=>navigate('/poet-board')} className="btn d-block my-2 btn-secondary fs-6 fw-light">
-                            Login
-                        </button>
-                    </form>
-                    <ul>
-                        <li>
-                            <a href="/join" className="text-decoration-none">
-                                Join for free here
-                            </a>
-                        </li>
-                        <li>
-                            Don't have a password? Check your email for a verification link.
-                        </li>
-                    </ul>
-                </div>
+                <p className="px-2">
+                    To upload your EPUB sign in with your poetically me details
+                </p>
+                <form>
+                    <div className="form-group my-3">
+                        <input className="form-control" placeholder="Email" />
+                    </div>
+                    <div className="form-group my-3">
+                        <input className="form-control" placeholder="Password" />
+                    </div>
+                    <button className="btn btn-next text-white w-100 my-3 py-2">
+                        Continue
+                    </button>
+                </form>
+                <hr className="my-0" />
+                <p className="pt-2 mb-0 pb-0 fs-7">
+                    <a href="/" className="text-decoration-none">Forgot Password?</a>
+                </p>
             </div>
-        </Fragment>
+        </div>
     )
 }
 
