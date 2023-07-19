@@ -1,8 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import Poems from "../components/Poems";
-import Compose from "../components/Compose";
 
 const Dashboard = ()=>{
     const [key, setKey] = useState('poems')
@@ -22,11 +20,9 @@ const Dashboard = ()=>{
                     <Tabs id='profile-tab' variant='pills' className='my-4' activeKey={key} onSelect={(k)=>setKey(k)} >
                         <Tab tabClassName="text-dark fs-6 fw-lighter" eventKey="poems" title="Poems">
                             {/* <hr /> */}
-                            <Poems />
                         </Tab>
                         <Tab tabClassName="text-dark fs-6 fw-lighter" eventKey="compose" title="Compose">
                             {/* <hr /> */}
-                            <Compose />
                         </Tab>
                         <Tab tabClassName="text-dark fs-6 fw-lighter" eventKey="publish" title="Publish">
                             {/*  */}
