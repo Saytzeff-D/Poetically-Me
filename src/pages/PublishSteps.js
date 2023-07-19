@@ -4,7 +4,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepButton from '@mui/material/StepButton';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';el';
+import Typography from '@mui/material/Typography';
 import Logo from '../assets/poetically-me.png'
 import UploadPoem from "../components/UploadPoem";
 
