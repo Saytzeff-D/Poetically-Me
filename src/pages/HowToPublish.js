@@ -3,8 +3,8 @@ import Logo from '../assets/poetically-me.png'
 
 const HowToPublish = ()=>{
     return (
-        <div className="d-flex justify-content-center pt-5 mt-4">
-            <div className="col-md-3 text-center">
+        <div className="d-flex justify-content-center pt-5 mt-4 mx-md-0 mx-4">
+            <div className="col-md-5 col-lg-3 text-center">
                 <img src={Logo} className="img-fluid" />
                 <p className="fw-bold fs-4">
                     Choose how to publish

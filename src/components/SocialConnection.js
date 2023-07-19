@@ -3,8 +3,8 @@ import Logo from '../assets/poetically-me.png'
 
 const SocialConnection = ()=>{
     return (
-        <div className="d-flex justify-content-center pt-1">
-            <div className="bg-white col-md-3 p-3 text-center rounded shadow-lg">
+        <div className="d-flex justify-content-center pt-1 mx-md-0 mx-4 py-md-5 py-lg-0">
+            <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">
                     Join Poetically Me
@@ -42,7 +42,7 @@ const SocialConnection = ()=>{
                 <div className="form-group">
                     <input className="form-control" placeholder="Enter Email" />
                 </div>
-                <button className="btn btn-next text-white w-100 my-4">
+                <button className="btn btn-next py-2 text-white w-100 my-4">
                     Continue
                 </button>
                 <hr className="my-0" />

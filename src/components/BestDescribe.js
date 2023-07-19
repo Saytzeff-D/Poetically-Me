@@ -3,8 +3,8 @@ import Logo from '../assets/poetically-me.png'
 
 const BestDescribe = ()=>{
     return (
-        <div className="d-flex justify-content-center mt-4">
-            <div className="bg-white col-md-3 p-3 rounded shadow-lg">
+        <div className="d-flex justify-content-center mt-5 py-md-5 py-lg-0 mx-md-0 mx-4">
+            <div className="bg-white col-md-6 col-lg-3 p-3 rounded shadow-lg">
                 <div className="d-flex justify-content-center">
                     <img src={Logo} className="img-fluid" />
                 </div>
@@ -33,7 +33,7 @@ const BestDescribe = ()=>{
                             I am here for both
                         </label>
                     </div>
-                    <button className="btn mb-4 btn-block w-100 fw-normal btn-next text-white">
+                    <button className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
                         Next
                     </button>
                 </div>

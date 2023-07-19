@@ -3,8 +3,8 @@ import Logo from '../assets/poetically-me.png'
 
 const Password = ()=>{
     return (
-        <div className="d-flex justify-content-center mt-3 pt-5">
-            <div className="bg-white col-md-3 p-3 text-center rounded shadow-lg">
+        <div className="d-flex justify-content-center mt-3 pt-5 mx-md-0 mx-4">
+            <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">
                     Set up your password
@@ -19,7 +19,7 @@ const Password = ()=>{
                     <div className="form-group my-4">
                         <input className="form-control" placeholder="Repeat Password" />
                     </div>
-                    <button className="btn mb-4 btn-block w-100 fw-normal btn-next text-white">
+                    <button className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
                         Continue
                     </button>
                     <hr className="my-0" />
