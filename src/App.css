@@ -1,26 +1,17 @@
- @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-.brand-text {
-    color: #AB9768 !important;
-    font-family: 'Pacifico', cursive;
+.bg-register {
+    background: linear-gradient(to right, rgb(254,167,75), rgb(250,124,68));
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
-.btn-join {
-    background-color: #AB9768 !important;
+.btn-next {
+    background-color: #370A31 !important;
 }
-.bg-login {
-    background-color: #F0ECE0 !important;
+.fs-7 {
+    font-size: small;
 }
-.nav-link.active {
-    background-color: #AB9768 !important;
-    color: white !important; 
-    border-radius: 0% !important;
-}
-.bg-poem {
-    background-color: #F5F3EE !important;
-}
-.bg-poet-board {
-    background: #FAF6EA !important;
-    background-attachment: fixed;
-}
-.text-poem {
-    color: #AB9768 !important;
+.text-next {
+    color: #370A31 !important;
 }
