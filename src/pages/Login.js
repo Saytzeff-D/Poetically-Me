@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 const Login = ()=>{
     const navigate = useNavigate()
     return (
-        <div className="d-flex justify-content-center pt-5 mt-4 mx-4 mx-md-0">
+        <div className="d-flex justify-content-center pt-5 mt-md-4 mx-4 mx-md-0">
             <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="fw-bold fs-4">

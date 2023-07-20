@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 const BestDescribe = ()=>{
     const navigate = useNavigate()
     return (
-        <div className="d-flex justify-content-center mt-5 py-md-5 py-lg-0 mx-md-0 mx-4  animate__animated animate__slow animate__fadeIn">
+        <div className="d-flex justify-content-center mt-4 mt-md-5 py-md-5 py-lg-0 mx-md-0 mx-4  animate__animated animate__slow animate__fadeIn">
             <div className="bg-white col-md-6 col-lg-3 p-3 rounded shadow-lg">
                 <div className="d-flex justify-content-center">
                     <img src={Logo} className="img-fluid" />

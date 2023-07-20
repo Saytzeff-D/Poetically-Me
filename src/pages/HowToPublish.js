@@ -15,13 +15,13 @@ const HowToPublish = ()=>{
                     You can publish a poem, update a book you have already submitted
                 </p>
                 <div>
-                    <div className="form-check border py-2 px-5 rounded my-4">
+                    <div className="form-check border border-dark py-2 px-5 rounded my-4">
                         <input className="form-check-input" type="radio" />
                         <label className="form-check-label fs-6">
                             Submit a new poem
                         </label>
                     </div>
-                    <div className="form-check border py-2 px-5 rounded my-4">
+                    <div className="form-check border border-dark py-2 px-5 rounded my-4">
                         <input className="form-check-input" type="radio"/>
                         <label className="form-check-label fs-6">
                             Update poem
