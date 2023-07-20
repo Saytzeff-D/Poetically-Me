@@ -20,6 +20,8 @@ import Info from './components/Info';
 import Publish from './pages/Publish';
 import HowToPublish from './pages/HowToPublish';
 import PublishSteps from './pages/PublishSteps';
+import TopPoems from './components/TopPoems';
+import Profile from './pages/Profile';
 
 function App() {
   return (
@@ -28,6 +30,19 @@ function App() {
         <Route 
           path='/'
           element={<Redirect />}
+        />
+        <Route 
+          path='/dashboard'
+          element={<Dashboard />}
+        >
+          <Route 
+            path='/dashboard/'
+            element={<TopPoems />}
+          />
+        </Route>
+        <Route 
+          path='/profile'
+          element={<Profile />}
         />
         <Route 
           path='/join'
