@@ -1,10 +1,12 @@
 import React from "react";
 import Logo from '../assets/poetically-me.png'
+import { useNavigate } from "react-router";
 
 const Publish = ()=>{
+    const navigate = useNavigate()
     return (
         <div className="d-flex justify-content-center pt-5 mt-4 mx-4 mx-md-0">
-            <div className="col-md-5 col-lg-3col-md-3 text-center">
+            <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="fw-bold fs-4">
                     Publish to Poetically Me
@@ -12,10 +14,10 @@ const Publish = ()=>{
                 <p className="px-2">
                     To upload your EPUB sign in with your poetically me details
                 </p>
-                <button className="btn border border-1 w-100 text-next py-2">
+                <button onClick={()=> navigate('/join/social')} className="btn border border-dark border-1 w-100 text-next py-2">
                     Create Account
                 </button>
-                <button className="btn btn-next w-100 text-white my-4 py-2">
+                <button onClick={()=>navigate('/login')} className="btn btn-next w-100 text-white my-4 py-2">
                     Continue
                 </button>
                 <hr className="my-0" />

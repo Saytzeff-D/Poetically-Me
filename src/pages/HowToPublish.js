@@ -1,10 +1,12 @@
 import React from "react";
 import Logo from '../assets/poetically-me.png'
+import { useNavigate } from "react-router";
 
 const HowToPublish = ()=>{
+    const navigate = useNavigate()
     return (
         <div className="d-flex justify-content-center pt-5 mt-4 mx-md-0 mx-4">
-            <div className="col-md-5 col-lg-3 text-center">
+            <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="fw-bold fs-4">
                     Choose how to publish
@@ -25,7 +27,7 @@ const HowToPublish = ()=>{
                             Update poem
                         </label>
                     </div>
-                    <button className="btn btn-next text-white py-2 w-100">
+                    <button onClick={()=>navigate('/publish-steps')} className="btn btn-next text-white py-2 w-100">
                         Continue
                     </button>
                 </div>

@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Logo from '../assets/poetically-me.png'
 import LoadingGif from '../assets/loading.png'
 import Backdrop from '@mui/material/Backdrop';
+import { useNavigate } from "react-router";
 
 const DateOFBirth = ()=>{
+    const navigate = useNavigate()
     const [open, setOpen] = useState(false)
     return (
         <div className="d-flex justify-content-center mt-5 pt-5 mx-md-0 mx-4">
-            <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg">
+            <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg  animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">
                     What is your date of birth
@@ -36,7 +38,7 @@ const DateOFBirth = ()=>{
                             </select>
                         </div>
                     </div>
-                    <button className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
+                    <button onClick={()=>navigate('/join/password')} className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
                         Next
                     </button>
                 </div>

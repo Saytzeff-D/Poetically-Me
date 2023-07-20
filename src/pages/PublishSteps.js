@@ -8,7 +8,7 @@ const PublishSteps = ()=>{
     return (
         <Fragment>
             <div className="d-flex justify-content-center mt-5">
-                <div className="col-md-4 text-center">
+                <div className="col-md-6 col-lg-4 text-center animate__animated animate__slow animate__fadeIn">
                     <img src={Logo} className="img-fluid" />
                     <p className="my-1 fw-bold fs-5">
                         Publish poem in 4 easy steps
