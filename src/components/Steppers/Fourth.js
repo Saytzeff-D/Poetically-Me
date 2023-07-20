@@ -1,6 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import Info from './Info';
 
 const Fourth = ()=>{
+    const [open, setOpen] = useState(false)
+    const upload = (e)=>{
+        e.preventDefault()
+        setOpen(true)
+    }
     return(
         <Fragment>
             <form className='px-5'>
@@ -16,10 +22,11 @@ const Fourth = ()=>{
                     </label>
                     <input type='date' className='form-control border border-dark' placeholder="Original Publication Date" />
                 </div>
-                <button className='btn btn-next py-2 w-100'>
+                <button onClick={(e)=>upload(e)} className='btn btn-next py-2 w-100'>
                     Upload Poem
                 </button>
             </form>
+            <Info open={open} />
         </Fragment>
     )
 }
