@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Logo from '../assets/poetically-me.png'
-import LoadingGif from '../assets/loading.png'
+import Logo from '../../assets/poetically-me.png'
+import LoadingGif from '../../assets/loading.png'
 import Backdrop from '@mui/material/Backdrop';
 import { useNavigate } from "react-router";
 
@@ -8,7 +8,7 @@ const DateOFBirth = ()=>{
     const navigate = useNavigate()
     const [open, setOpen] = useState(false)
     return (
-        <div className="d-flex justify-content-center mt-md-5 pt-5 mx-md-0 mx-4">
+        <div className="d-flex justify-content-center my-md-5 py-5 mx-md-0 mx-4">
             <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg  animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">

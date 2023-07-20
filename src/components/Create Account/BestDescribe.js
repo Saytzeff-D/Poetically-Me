@@ -1,11 +1,11 @@
 import React from "react";
-import Logo from '../assets/poetically-me.png'
+import Logo from '../../assets/poetically-me.png'
 import { useNavigate } from "react-router";
 
 const BestDescribe = ()=>{
     const navigate = useNavigate()
     return (
-        <div className="d-flex justify-content-center mt-4 mt-md-5 py-md-5 py-lg-0 mx-md-0 mx-4  animate__animated animate__slow animate__fadeIn">
+        <div className="d-flex justify-content-center my-4 mt-md-5 py-md-5 py-lg-0 mx-md-0 mx-4  animate__animated animate__slow animate__fadeIn">
             <div className="bg-white col-md-6 col-lg-3 p-3 rounded shadow-lg">
                 <div className="d-flex justify-content-center">
                     <img src={Logo} className="img-fluid" />
@@ -17,19 +17,19 @@ const BestDescribe = ()=>{
                     Choose which best describes you from the list below
                 </p>
                 <div>
-                    <div className="form-check border border-dark py-2 px-5 rounded my-4">
+                    <div className="form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
                         <input className="form-check-input" type="radio" />
                         <label className="form-check-label fs-6">
                             I am here to read
                         </label>
                     </div>
-                    <div className="form-check border border-dark py-2 px-5 rounded my-4">
+                    <div className="form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
                         <input className="form-check-input" type="radio"/>
                         <label className="form-check-label fs-6">
                             I am here to publish
                         </label>
                     </div>
-                    <div className="form-check border border-dark py-2 px-5 rounded my-4">
+                    <div className="form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
                         <input className="form-check-input" type="radio"/>
                         <label className="form-check-label fs-6">
                             I am here for both
