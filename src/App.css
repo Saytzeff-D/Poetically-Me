@@ -1,3 +1,6 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
 .bg-register {
     background: linear-gradient(to right, rgb(254,167,75), rgb(250,124,68));
     position: absolute;
@@ -8,10 +11,42 @@
 }
 .btn-next {
     background-color: #370A31 !important;
+    color: white !important;
+}
+.bg-next {
+    background-color: #370A31 !important;
+    color: white !important;
 }
 .fs-7 {
     font-size: small;
 }
 .text-next {
     color: #370A31 !important;
+}
+.bg-sidebar {
+    background-color: #FCFCFE !important;
+}
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #370A31;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    /* border-radius: 10px; */
+}
+.bg-poetical-orange {
+    background-color: #FE9747 !important;
+}
+.fw-less-bold {
+    font-weight: 500;
+}
+.footer {
+    margin-bottom: 0px;
+    z-index: 999999999999999999999999 !important;
+}
+::placeholder {
+    color: black !important;
 }
