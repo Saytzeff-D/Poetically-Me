@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
@@ -20,8 +19,11 @@ import Info from './components/Create Account/Info';
 import Publish from './pages/Publish';
 import HowToPublish from './pages/HowToPublish';
 import PublishSteps from './pages/PublishSteps';
-import TopPoems from './components/TopPoems';
+import TopPoems from './components/Poems/TopPoems';
 import Profile from './pages/Profile';
+import PoemDetails from './pages/PoemDetails';
+import RightsAndPricing from './pages/Right-Pricing';
+import Completed from './pages/Completed';
 
 function App() {
   return (
@@ -43,6 +45,18 @@ function App() {
         <Route 
           path='/profile'
           element={<Profile />}
+        />
+        <Route 
+          path='/summary'
+          element={<PoemDetails />}
+        />
+        <Route 
+          path='/rights-and-pricing'
+          element={<RightsAndPricing />}
+        />
+        <Route 
+          path='/completed'
+          element={<Completed />}
         />
         <Route 
           path='/join'
