@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
-import Info from './Info';
+import Info from './ModalBox';
 
-const Fourth = ()=>{
+const OtherDetails = ()=>{
     const [open, setOpen] = useState(false)
     const upload = (e)=>{
         e.preventDefault()
@@ -9,7 +9,7 @@ const Fourth = ()=>{
     }
     return(
         <Fragment>
-            <form className='px-5'>
+            <form className='px-3 px-md-5'>
                 <div className='form-group my-4'>
                     <input className='form-control border border-dark' placeholder='Publisher name' />
                 </div>
@@ -31,4 +31,4 @@ const Fourth = ()=>{
     )
 }
 
-export default Fourth
+export default OtherDetails

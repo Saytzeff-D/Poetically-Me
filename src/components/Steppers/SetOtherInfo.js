@@ -1,17 +1,17 @@
 import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Third = ()=>{
+const SetOtherInfo = ()=>{
     const dispatch = useDispatch()
     return(
         <Fragment>
-            <form className='px-5'>
-                <div className='form-group my-4'>
+            <form className='px-md-5 px-3'>
+                <div className='form-group border border-dark rounded my-4'>
                     <select className='form-select'>
                         <option>Primary subject category</option>
                     </select>
                 </div>
-                <div className='form-group my-4'>
+                <div className='form-group border border-dark rounded my-4'>
                     <select className='form-select'>
                         <option>Interest age</option>
                     </select>
@@ -20,7 +20,7 @@ const Third = ()=>{
                     <label className='form-label'>
                         Language
                     </label>
-                    <select className='form-select'>
+                    <select className='form-select border border-dark rounded'>
                         <option>English</option>
                     </select>
                 </div>
@@ -35,7 +35,7 @@ const Third = ()=>{
                         <label className='form-check-label'>No</label>
                     </div>
                 </div>
-                <button onClick={()=>dispatch({type: 'nextStep', payload: 3})} className='btn btn-next py-2 w-100'>
+                <button onClick={()=>dispatch({type: 'nextStep', payload: 3})} className='btn btn-next py-2 w-100 my-2'>
                     Continue
                 </button>
             </form>
@@ -43,4 +43,4 @@ const Third = ()=>{
     )
 }
 
-export default Third
+export default SetOtherInfo

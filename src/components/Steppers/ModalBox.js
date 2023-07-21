@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogContentText, DialogTitle } from "@mui/mate
 import React, { Fragment } from "react";
 import { useNavigate } from "react-router";
 
-const Info = (props)=>{
+const ModalBox = (props)=>{
     const { open } = props
     const navigate = useNavigate()
     return (
@@ -16,7 +16,7 @@ const Info = (props)=>{
                         <p className="text-center fs-6 text-dark fw-less-bold px-md-5">
                             Go to your profile to add release date, pricing and other information for your poem
                         </p>
-                        <button onClick={()=>navigate('/dashboard')} className="btn btn-next w-100 mb-5 mt-3 py-2">
+                        <button onClick={()=>navigate('/profile')} className="btn btn-next w-100 mb-5 mt-3 py-2">
                             Go to Profile
                         </button>
                     </DialogContentText>
@@ -26,4 +26,4 @@ const Info = (props)=>{
     )
 }
 
-export default Info
+export default ModalBox

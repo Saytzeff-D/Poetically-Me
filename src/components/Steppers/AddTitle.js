@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import { useDispatch } from 'react-redux';
 
-const Second = ()=>{
+const AddTitle = ()=>{
     const dispatch = useDispatch()
     return(
         <Fragment>
-            <form className='px-5'>
+            <form className='px-md-5 px-3'>
                 <div className='form-group my-4'>
                     <input className='form-control border border-dark' placeholder='Title' />
                 </div>
@@ -26,4 +26,4 @@ const Second = ()=>{
     )
 }
 
-export default Second
+export default AddTitle
