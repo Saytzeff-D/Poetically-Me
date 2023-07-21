@@ -8,21 +8,22 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import Logo from '../assets/poetically-me.png'
-import SidebarList from "../components/SidebarList";
-import PoemBar from "../components/PoemBar";
+import SidebarList from "../components/Layouts/SidebarList";
+import PoemBar from "../components/Layouts/PoemBar";
 import { Outlet } from "react-router";
 
 const Dashboard = (props)=>{
-    const drawerWidth = 280
+    const drawerWidth = 255
     const [mobileOpen, setMobileOpen] = useState(false)
     const { window } = props
 
     useEffect(()=>{
-        console.log(window)
     })
+
     const handleDrawerToggle = ()=>{
         setMobileOpen(!mobileOpen)
     }
+
     const drawer = (
         <div className='bg-sidebar border-0'>
             <Toolbar className='my-0'>
@@ -31,6 +32,7 @@ const Dashboard = (props)=>{
             <SidebarList />
         </div>
     )
+
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
@@ -45,7 +47,7 @@ const Dashboard = (props)=>{
                     ml: { md: `${drawerWidth}px` },
                     }}
                 >
-                <Toolbar className='bg-white'>
+                <Toolbar className='bg-white text-dark'>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -53,7 +55,7 @@ const Dashboard = (props)=>{
                         onClick={handleDrawerToggle}
                         sx={{ mr: 2, display: { md: 'none' } }}
                     >
-                        <i className="fa fa-bars text-dark"></i>
+                        <MenuIcon />
                     </IconButton>
                     <PoemBar />
                 </Toolbar>

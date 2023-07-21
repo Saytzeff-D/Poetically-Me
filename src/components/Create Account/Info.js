@@ -6,12 +6,12 @@ const Info = ()=>{
     const navigate = useNavigate()
     return (
         <div className="d-flex justify-content-center my-md-5 py-5 mx-md-0 mx-4">
-            <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg animate__animated animate__slow animate__fadeIn">
+            <div className="bg-white col-md-5 col-lg-3 p-3 mb-md-0 mb-5 mt-3 text-center rounded shadow-lg animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">
-                    Lets setup your profile
+                    Let's setup your profile
                 </p>
-                <p className="px-4 fs-6">
+                <p className="px-md-4 fs-6">
                     Your profile will be made visible to other users
                 </p>
                 <button onClick={()=>navigate('/dashboard')} className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">

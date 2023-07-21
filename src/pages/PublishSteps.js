@@ -3,18 +3,18 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Logo from '../assets/poetically-me.png'
-import First from "../components/Steppers/First";
+import UploadPoem from "../components/Steppers/UploadPoem";
 import { useSelector } from "react-redux";
-import Second from "../components/Steppers/Second";
-import Fourth from "../components/Steppers/Fourth";
-import Third from "../components/Steppers/Third";
+import AddTitle from "../components/Steppers/AddTitle";
+import OtherDetails from "../components/Steppers/OtherDetails";
+import SetOtherInfo from "../components/Steppers/SetOtherInfo";
 
 const PublishSteps = ()=>{
     const activeStep = useSelector(state=>state.StepperReducer.activeStep)
     
     return (
         <Fragment>
-            <div className="d-flex justify-content-center mt-5">
+            <div className="d-flex justify-content-center mt-md-5 pb-md-0 pb-5">
                 <div className="col-md-6 col-lg-4 animate__animated animate__slow animate__fadeIn">
                     <div className="d-flex justify-content-center">
                         <img src={Logo} className="img-fluid" />
@@ -39,19 +39,19 @@ const PublishSteps = ()=>{
                     {
                         activeStep == 0
                         ?
-                        <First />
+                        <UploadPoem />
                         :
                         activeStep == 1
                         ?
-                        <Second />
+                        <AddTitle />
                         :
                         activeStep == 2
                         ?
-                        <Third />
+                        <SetOtherInfo />
                         :
                         activeStep == 3
                         ?
-                        <Fourth />
+                        <OtherDetails />
                         :
                         ''
                     }

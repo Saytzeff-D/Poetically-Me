@@ -5,13 +5,13 @@ import { useNavigate } from "react-router";
 const EmailVerification = ()=>{
     const navigate = useNavigate()
     return (
-        <div className="d-flex justify-content-center my-md-4 py-5 mx-md-0 mx-4">
+        <div className="d-flex justify-content-center my-md-4 py-3 mx-md-0 mx-4">
             <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">
                     Enter Confirmation Code
                 </p>
-                <p className="px-4 fs-6">
+                <p className="px-md-4 fs-6">
                     We sent a confirmation code to the email you provided
                 </p>
                 <form>

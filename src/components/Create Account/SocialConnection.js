@@ -5,8 +5,8 @@ import { useNavigate } from "react-router";
 const SocialConnection = ()=>{
     const navigate = useNavigate()
     return (
-        <div className="d-flex justify-content-center pt-1 mx-md-0 my-2 mx-4 py-md-5 py-lg-0">
-            <div className="bg-white col-md-5 col-lg-3 p-3 text-center rounded shadow-lg animate__animated animate__slow animate__fadeIn">
+        <div className="d-flex justify-content-center pt-1 mx-md-0 py-2 mx-4">
+            <div className="bg-white col-md-5 col-lg-3 p-3 text-center mb-2  rounded shadow-lg animate__animated animate__slow animate__fadeIn">
                 <img src={Logo} className="img-fluid" />
                 <p className="my-3 fw-bold fs-5">
                     Join Poetically Me
@@ -39,7 +39,7 @@ const SocialConnection = ()=>{
                     </p>
                 </div>
                 <img src={require('../../assets/or.png')} className="img-fluid py-1" />
-                <div className="form-group">
+                <div className="form-group border border-dark rounded">
                     <input className="form-control" placeholder="Enter Email" />
                 </div>
                 <button onClick={()=>navigate('/join/')} className="btn btn-next py-2 text-white w-100 my-4">

@@ -15,10 +15,10 @@ const Login = ()=>{
                     To upload your EPUB sign in with your poetically me details
                 </p>
                 <form>
-                    <div className="form-group my-3">
+                    <div className="form-group border rounded border-dark my-3">
                         <input className="form-control" placeholder="Email" />
                     </div>
-                    <div className="form-group my-3">
+                    <div className="form-group border rounded border-dark my-3">
                         <input className="form-control" placeholder="Password" />
                     </div>
                     <button onClick={()=>navigate('/how-to-publish')} className="btn btn-next text-white w-100 my-3 py-2">
