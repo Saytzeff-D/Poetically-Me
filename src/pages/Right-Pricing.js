@@ -57,7 +57,7 @@ const RightsAndPricing = ()=>{
                 </p>
                 <hr />
                 <div className="d-flex justify-content-center mt-5">
-                    <button className="btn btn-next rounded-pill px-3 py-2">
+                    <button onClick={()=>navigate('/add-new-countries')} className="btn btn-next rounded-pill px-3 py-2">
                         Add new Countries/Regions
                     </button>
                 </div>
