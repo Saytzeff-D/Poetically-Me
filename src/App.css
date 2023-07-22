@@ -3,6 +3,10 @@
     margin: 0;
     padding: 0;
 }
+body {
+    margin: 0;
+    padding: 0;
+}
 .bg-register {
     background: linear-gradient(to right, rgb(254,167,75), rgb(250,124,68));
     margin: 0;
@@ -24,6 +28,7 @@
 .bg-next {
     background-color: #370A31 !important;
     color: white !important;
+    margin: 0;
 }
 .fs-7 {
     font-size: small;
@@ -73,4 +78,11 @@
 }
 .header-user-pill {
     height: 50px;
+}
+input[type="checkbox"]:checked {
+    background: #370A31;
+    color: white;
+}
+.bg-sky-blue {
+    background-color: #E9E9FB !important;
 }
