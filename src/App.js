@@ -24,6 +24,7 @@ import Profile from './pages/Profile';
 import PoemDetails from './pages/PoemDetails';
 import RightsAndPricing from './pages/Right-Pricing';
 import Completed from './pages/Completed';
+import AddNewCountries from './pages/AddNewCountries';
 
 function App() {
   return (
@@ -53,6 +54,10 @@ function App() {
         <Route 
           path='/rights-and-pricing'
           element={<RightsAndPricing />}
+        />
+        <Route 
+          path='/add-new-countries'
+          element={<AddNewCountries />}
         />
         <Route 
           path='/completed'
