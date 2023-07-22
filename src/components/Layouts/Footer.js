@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 
 const Footer = ()=>{
     return (
-        // <Fragment>
-            <div className="bg-next m-0">
+        <Fragment>
+            <footer className="bg-next pb-1">
                 <div className="d-flex justify-content-around flex-column flex-md-row w-100 p-5">
                     <div className="">
                         <p className="fs-5 fw-less-bold">About Us</p>
@@ -32,11 +32,11 @@ const Footer = ()=>{
                         <p className="fw-light">Help</p>
                     </div>
                 </div>
-                <p className="text-center pb-4">
+                <p className="text-center">
                     Copyright &copy; 2023 Poetically me. All rights reserved.
                 </p>
-            </div>
-        // </Fragment>
+            </footer>
+        </Fragment>
     )
 }
 
