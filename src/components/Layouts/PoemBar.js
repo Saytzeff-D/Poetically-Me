@@ -1,7 +1,11 @@
 import React, { Fragment } from "react";
 import User from '../../assets/user.png'
+import { useNavigate } from "react-router";
 
-const PoemBar = ()=>{
+const PoemBar = (props)=>{
+    const { jwt } = props
+    const navigate = useNavigate()
+
     return (
         <Fragment>
             <div className="poem-bar py-3">
@@ -15,9 +19,17 @@ const PoemBar = ()=>{
                     <div className="mt-3">
                         <p className="mx-3"><i className="fa fa-bell text-dark fa-lg"></i></p>
                     </div>
-                    <div className="bg-poetical-orange user-pill text-white px-3 rounded-pill">
-                        Mike <img src={User} height='30px' className="ms-2" />
-                    </div>
+                    {
+                        jwt !== null
+                        ?
+                        <div className="bg-poetical-orange user-pill text-white px-3 rounded-pill">
+                            Mike <img src={User} height='30px' className="ms-2" />
+                        </div>
+                        :
+                        <button onClick={()=>navigate('/publish')} className="btn btn-next rounded-pill">
+                            Sign In
+                        </button>
+                    }                
                 </div>
             </div>
         </Fragment>

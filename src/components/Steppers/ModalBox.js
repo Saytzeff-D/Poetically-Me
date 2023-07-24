@@ -16,7 +16,7 @@ const ModalBox = (props)=>{
                         <p className="text-center fs-6 text-dark fw-less-bold px-md-5">
                             Go to your profile to add release date, pricing and other information for your poem
                         </p>
-                        <button onClick={()=>navigate('/profile')} className="btn btn-next w-100 mb-5 mt-3 py-2">
+                        <button onClick={()=>navigate('/profile/my-poems')} className="btn btn-next w-100 mb-5 mt-3 py-2">
                             Go to Profile
                         </button>
                     </DialogContentText>

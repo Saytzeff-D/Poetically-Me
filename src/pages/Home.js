@@ -11,13 +11,16 @@ import Logo from '../assets/poetically-me.png'
 import SidebarList from "../components/Layouts/SidebarList";
 import PoemBar from "../components/Layouts/PoemBar";
 import { Outlet } from "react-router";
+import Footer from "../components/Layouts/Footer";
 
 const Home = (props)=>{
     const drawerWidth = 255
     const [mobileOpen, setMobileOpen] = useState(false)
     const { window } = props
+    const [jwt, setJwt] = useState()
 
     useEffect(()=>{
+        setJwt(JSON.parse(localStorage.getItem('jwt')))
     })
 
     const handleDrawerToggle = ()=>{
@@ -57,7 +60,7 @@ const Home = (props)=>{
                     >
                         <MenuIcon />
                     </IconButton>
-                    <PoemBar />
+                    <PoemBar jwt={jwt} />
                 </Toolbar>
                 </AppBar>
                 <Box
@@ -94,9 +97,12 @@ const Home = (props)=>{
                 component="main" 
                 sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
                 >
-                    <Outlet />
+                    <Outlet />                    
                 </Box>
             </Box>
+            <div className="d-lg-none d-block">
+                <Footer />
+            </div>
         </Fragment>
     )
 }

@@ -16,7 +16,7 @@ const Completed = ()=>{
                         Your poem has been successfully submitted and is awaiting review. We will let you know when it is live
                     </p>
                     <div className="d-flex justify-content-center my-5 mx-md-5 mx-3">
-                        <button onClick={()=>navigate('/dashboard')} className="btn btn-next py-2 w-100">
+                        <button onClick={()=>navigate('/')} className="btn btn-next py-2 w-100">
                             Continue to Home
                         </button>
                     </div>

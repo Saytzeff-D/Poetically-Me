@@ -14,7 +14,7 @@ const Info = ()=>{
                 <p className="px-md-4 fs-6">
                     Your profile will be made visible to other users
                 </p>
-                <button onClick={()=>navigate('/dashboard')} className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
+                <button onClick={()=>navigate('/profile')} className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
                     Continue
                 </button>
                 <hr className="my-0" />
