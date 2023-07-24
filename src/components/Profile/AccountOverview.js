@@ -12,7 +12,7 @@ const AccountOverview = ()=> {
                 <Tab tabClassName='text-dark' eventKey={1} title="My Profile">
                     <hr />
                     <form>
-                        <div className='row'>
+                        <div className='row mt-5'>
                             <div className='form-group my-1 col-md-4'>
                                 <label className='form-label'>First Name</label>
                                 <input className='form-control border-0 border-bottom rounded-0 border-dotted middle' />
