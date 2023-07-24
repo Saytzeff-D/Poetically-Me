@@ -53,6 +53,9 @@ body {
 .bg-poetical-orange {
     background-color: #FE9747 !important;
 }
+.text-poetical-orange {
+    color: #FE9747 !important;
+}
 .fw-less-bold {
     font-weight: 500;
 }
@@ -85,4 +88,15 @@ input[type="checkbox"]:checked {
 }
 .bg-sky-blue {
     background-color: #E9E9FB !important;
+}
+.nav-link.active {
+    background-color: #370A31 !important;
+    color: white !important; 
+    border-radius: 0% !important;
+}
+.border-dotted {
+    border-bottom-style: dashed !important;
+}
+input.border-dotted:focus {
+    box-shadow: none;
 }
