@@ -1,83 +1,102 @@
-import React, { Fragment } from "react";
-import { useNavigate } from "react-router";
+import React, { Fragment, useEffect, useState } from "react";
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import Typography from '@mui/material/Typography';
+import Toolbar from '@mui/material/Toolbar';
+import Logo from '../assets/poetically-me.png'
+import SidebarList from "../components/Layouts/SidebarList";
+import PoemBar from "../components/Layouts/PoemBar";
+import { Outlet } from "react-router";
 
-const Home = ()=>{
-    const navigate = useNavigate()
-    return(
+const Home = (props)=>{
+    const drawerWidth = 255
+    const [mobileOpen, setMobileOpen] = useState(false)
+    const { window } = props
+
+    useEffect(()=>{
+    })
+
+    const handleDrawerToggle = ()=>{
+        setMobileOpen(!mobileOpen)
+    }
+
+    const drawer = (
+        <div className='bg-sidebar border-0'>
+            <Toolbar className='my-0'>
+                <img className="sideNavLogo" src={Logo} alt="poetically logo" />
+            </Toolbar>
+            <SidebarList />
+        </div>
+    )
+
+    const container = window !== undefined ? () => window().document.body : undefined;
+
+    return (
         <Fragment>
-            <div className="container-fluid m-0 bg-secondary pb-5">
-                <div className="d-flex justify-content-between pt-2">
-                    <a href="/" className="brand-text text-decoration-none fs-1 fw-light">
-                        PoeticallyMe
-                    </a>
-                    <p className="text-white">
-                        Already a member? 
-                         <button onClick={()=>navigate('/login')} className="mx-1 btn btn-light shadow">
-                            Login
-                        </button>
-                    </p>
-                </div>
-                <div className="text-white p-5 m-0 text-center">
-                    <p className="fs-1 fw-bold">
-                        Join the largest poetry community
-                    </p>
-                    <p className="fs-6 fw-light">
-                        Over 50,000 poets get feedback and improve their poetry
-                    </p>
-                    <p className="fs-6 fw-light">
-                        Totally free with optional paid memberships.
-                    </p>
-                    <button className="btn btn-light fw-lighter" onClick={()=>navigate('/join')}>
-                        Publish your poem now
-                    </button>
-                </div>
-            </div>
-            <div className="container">
-                <p className="text-center pt-2 fs-4 fw-light">
-                    Made for any poet - from beginners to experts
-                </p>
-                <p className="text-center fs-5 fw-lighter">
-                    Encouragement with friendly comments
-                </p>
-                <p className="fw-light fs-5">
-                    Trending Poetry
-                </p>
-                <div className="row w-100 mb-5">
-                    <div className="col-md-4">
-                        <div className="card shadow p-3">
-                            <p>
-                                Lorem Ipsumjjfsnvj
-                            </p>
-                            <p>
-                                <i className="fa fa-comment-o"></i> 23 comments
-                            </p>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card shadow p-3">
-                            <p>
-                                Lorem Ipsumjjfsnvj    
-                            </p>
-                            <p>
-                                <i className="fa fa-comment-o"></i> 23 comments
-                            </p>
-                        </div>
-                    </div>
-                    <div className="col-md-4">
-                        <div className="card shadow p-3">
-                            <p>
-                                Lorem Ipsumjjfsnvj
-                            </p>
-                            <p>
-                                <i className="fa fa-comment-o"></i> 23 comments
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <p className="text-center fw-lighter fs-6">
-                &copy; 2023
-            </p>
+            <Box sx={{display: 'flex'}}>
+                <CssBaseline />
+                <AppBar
+                    className='shadow-none mb-5'
+                    position="fixed"
+                    sx={{
+                    width: { md: `calc(100% - ${drawerWidth}px)` },
+                    ml: { md: `${drawerWidth}px` },
+                    }}
+                >
+                <Toolbar className='bg-white text-dark'>
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="start"
+                        onClick={handleDrawerToggle}
+                        sx={{ mr: 2, display: { md: 'none' } }}
+                    >
+                        <MenuIcon />
+                    </IconButton>
+                    <PoemBar />
+                </Toolbar>
+                </AppBar>
+                <Box
+                    component="nav"
+                    sx={{ width: { md: drawerWidth }, flexShrink: { md: 0 } }}
+                >
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                        sx={{
+                            display: { xs: 'block', md: 'none' },
+                            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        }}
+                        >
+                        {drawer}
+                    </Drawer>
+                    <Drawer
+                        variant="permanent"
+                        sx={{
+                            display: { xs: 'none', md: 'block' },
+                            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        }}
+                        open
+                        >
+                        {drawer}
+                    </Drawer>
+                </Box>
+                <Box
+                component="main" 
+                sx={{ flexGrow: 1, p: 3, width: { md: `calc(100% - ${drawerWidth}px)` } }}
+                >
+                    <Outlet />
+                </Box>
+            </Box>
         </Fragment>
     )
 }

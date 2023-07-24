@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
 import Name from './components/Create Account/Name';
 import Username from './components/Create Account/Username';
 import Redirect from './pages/Redirect';
@@ -25,6 +24,7 @@ import PoemDetails from './pages/PoemDetails';
 import RightsAndPricing from './pages/Right-Pricing';
 import Completed from './pages/Completed';
 import AddNewCountries from './pages/AddNewCountries';
+import AccountOverview from './components/Profile/AccountOverview';
 
 function App() {
   return (
@@ -35,18 +35,23 @@ function App() {
           element={<Redirect />}
         />
         <Route 
-          path='/dashboard'
-          element={<Dashboard />}
+          path='/profile'
+          element={<Profile />}
         >
           <Route 
-            path='/dashboard/'
-            element={<TopPoems />}
+            path='/profile/'
+            element={<AccountOverview />}
           />
         </Route>
         <Route 
-          path='/profile'
-          element={<Profile />}
-        />
+          path='/home'
+          element={<Home />}
+        >
+          <Route 
+            path='/home/'
+            element={<TopPoems />}
+          />
+        </Route>
         <Route 
           path='/summary'
           element={<PoemDetails />}
