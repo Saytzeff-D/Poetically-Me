@@ -25,6 +25,7 @@ import RightsAndPricing from './pages/Right-Pricing';
 import Completed from './pages/Completed';
 import AddNewCountries from './pages/AddNewCountries';
 import AccountOverview from './components/Profile/AccountOverview';
+import MyPoems from './components/Profile/MyPoems';
 
 function App() {
   return (
@@ -41,6 +42,10 @@ function App() {
           <Route 
             path='/profile/'
             element={<AccountOverview />}
+          />
+          <Route 
+            path='/profile/my-poems'
+            element={<MyPoems />}
           />
         </Route>
         <Route 
