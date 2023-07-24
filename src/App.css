@@ -100,3 +100,6 @@ input[type="checkbox"]:checked {
 input.border-dotted:focus {
     box-shadow: none;
 }
+img.poem-book {
+    max-height: 240px;
+}
