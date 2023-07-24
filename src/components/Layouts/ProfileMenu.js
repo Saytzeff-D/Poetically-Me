@@ -9,7 +9,7 @@ const ProfileMenu = ()=>{
     return (
         <>
             {/* ProfileMenu */}
-            <List className="my-0">
+            <List className="mt-4">
                 <ListItem disablePadding>
                         <ListItemIcon>
                         </ListItemIcon>
@@ -20,12 +20,38 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
+                    <ListItemButton className='bg-next' >
+                        <ListItemIcon>
+                        </ListItemIcon>
+                        <ListItemText>
+                            <p className='my-0'>
+                                 Account Overview
+                            </p>
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>
+            </List>
+            <List>
+                <ListItem disablePadding>
+                    <ListItemButton>
+                        <ListItemIcon>
+                        </ListItemIcon>
+                        <ListItemText>
+                            <p className='my-0'>
+                             My Poems
+                            </p>
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>
+            </List>
+            <List>
+                <ListItem disablePadding>
                     <ListItemButton >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
                             <p className='my-0'>
-                                <i className='fa fa-user text-dark'></i> Account Overview
+                             My Shop
                             </p>
                         </ListItemText>
                     </ListItemButton>
@@ -38,20 +64,7 @@ const ProfileMenu = ()=>{
                         </ListItemIcon>
                         <ListItemText>
                             <p className='my-0'>
-                            <i class="fa fa-book-open"></i> My Poems
-                            </p>
-                        </ListItemText>
-                    </ListItemButton>
-                </ListItem>
-            </List>
-            <List>
-                <ListItem disablePadding>
-                    <ListItemButton >
-                        <ListItemIcon>
-                        </ListItemIcon>
-                        <ListItemText>
-                            <p className='my-0'>
-                            <i className='fa fa-shop text-dark'></i> My Shop
+                                 My Library
                             </p>
                         </ListItemText>
                     </ListItemButton>
@@ -64,7 +77,7 @@ const ProfileMenu = ()=>{
                         </ListItemIcon>
                         <ListItemText>
                             <p className='my-0'>
-                                <i className='fa fa-book text-dark'></i> My Library
+                                 Statements
                             </p>
                         </ListItemText>
                     </ListItemButton>
@@ -77,7 +90,7 @@ const ProfileMenu = ()=>{
                         </ListItemIcon>
                         <ListItemText>
                             <p className='my-0'>
-                                <i className='fa fa-cart-shopping text-dark'></i> Statements
+                                 Referrals
                             </p>
                         </ListItemText>
                     </ListItemButton>
@@ -90,20 +103,7 @@ const ProfileMenu = ()=>{
                         </ListItemIcon>
                         <ListItemText>
                             <p className='my-0'>
-                                <i className='fa fa-share-nodes text-dark'></i> Referrals
-                            </p>
-                        </ListItemText>
-                    </ListItemButton>
-                </ListItem>
-            </List>
-            <List>
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                        </ListItemIcon>
-                        <ListItemText>
-                            <p className='my-0'>
-                                <img src={require('../../assets/top_paid.png')} width='20px' height='20px' className='img-fluid' /> Wallets
+                                 Wallets
                             </p>
                         </ListItemText>
                     </ListItemButton>
