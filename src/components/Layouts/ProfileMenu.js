@@ -4,8 +4,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useLocation, useNavigate } from 'react-router';
 
 const ProfileMenu = ()=>{
+    const navigate = useNavigate()
+    const location = useLocation()
     return (
         <>
             {/* ProfileMenu */}
@@ -20,7 +23,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton className='bg-next' >
+                    <ListItemButton onClick={()=>navigate('/profile')} className={location.pathname == '/profile' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
@@ -33,7 +36,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton onClick={()=>navigate('/profile/my-poems')} className={location.pathname == '/profile/my-poems' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
@@ -46,7 +49,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton >
+                    <ListItemButton  onClick={()=>navigate('/profile/my-shop')} className={location.pathname == '/profile/my-shop' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
@@ -59,7 +62,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton  onClick={()=>navigate('/profile/my-library')} className={location.pathname == '/profile/my-library' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
@@ -72,7 +75,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton  onClick={()=>navigate('/profile/statements')} className={location.pathname == '/profile/statements' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
@@ -85,7 +88,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton  onClick={()=>navigate('/profile/referrals')} className={location.pathname == '/profile/referrals' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
@@ -98,7 +101,7 @@ const ProfileMenu = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton>
+                    <ListItemButton  onClick={()=>navigate('/profile/wallets')} className={location.pathname == '/profile/wallets' ? 'bg-next' : ''} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
