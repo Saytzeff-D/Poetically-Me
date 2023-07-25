@@ -3,9 +3,12 @@ import { Tab, Tabs } from 'react-bootstrap';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 import Save from '@mui/icons-material/Save';
-// import { FileCopyOutlined, Save } from '@mui/icons-material';
+import User from '../../assets/no_picture.png'
 
 const AccountOverview = ()=> {
+    const pickPicture = ()=>{
+        document.getElementById('fileInput').click()
+    }
     return (
         <Fragment>
             <Tabs className='my-2' variant='pills' defaultActiveKey={1}>
@@ -52,7 +55,19 @@ const AccountOverview = ()=> {
                 </Tab>
                 <Tab tabClassName='text-dark' eventKey={2} title="Profile Picture">
                     <hr />
-                Tab 2 content
+                    <p className='fs-6 fw-light'>
+                        Click on the image to pick your desired picture
+                    </p>
+                    <div className="thumbnail mx-1" onClick={pickPicture}>
+                        <input type='file' className='d-none' id='fileInput' />
+                        <div className="icon">
+                            <i className="fa fa-plus fa-2x" aria-hidden="true"></i>
+                        </div>
+                        <img src={User} />
+                    </div>
+                        <button className='btn btn-next py-2 mx-1'>
+                            Change Picture
+                        </button>
                 </Tab>
             </Tabs>
         </Fragment>
