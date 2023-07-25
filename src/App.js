@@ -26,6 +26,11 @@ import Completed from './pages/Completed';
 import AddNewCountries from './pages/AddNewCountries';
 import AccountOverview from './components/Profile/AccountOverview';
 import MyPoems from './components/Profile/MyPoems';
+import MyLibrary from './components/Profile/MyLibrary';
+import Statements from './components/Profile/Statements';
+import Referrals from './components/Profile/Referral';
+import Wallet from './components/Profile/Wallet';
+import MyShop from './components/Profile/MyShop';
 
 function App() {
   return (
@@ -46,6 +51,26 @@ function App() {
           <Route 
             path='/profile/my-poems'
             element={<MyPoems />}
+          />
+          <Route 
+            path='/profile/my-shop'
+            element={<MyShop />}
+          />
+          <Route 
+            path='/profile/my-library'
+            element={<MyLibrary />}
+          />
+          <Route 
+            path='/profile/statements'
+            element={<Statements />}
+          />
+          <Route 
+            path='/profile/referrals'
+            element={<Referrals />}
+          />
+          <Route 
+            path='/profile/wallets'
+            element={<Wallet />}
           />
         </Route>
         <Route 
