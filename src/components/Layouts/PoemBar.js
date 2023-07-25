@@ -27,7 +27,7 @@ const PoemBar = (props)=>{
                         </div>
                         :
                         <button onClick={()=>navigate('/publish')} className="btn btn-next rounded-pill">
-                            Sign In
+                            Publish Now
                         </button>
                     }                
                 </div>
