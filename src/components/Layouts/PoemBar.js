@@ -6,6 +6,11 @@ const PoemBar = (props)=>{
     const { jwt } = props
     const navigate = useNavigate()
 
+    const handlePublish = ()=>{
+        navigate('/publish')
+        sessionStorage.setItem('purpose', 'publish')
+    }
+
     return (
         <Fragment>
             <div className="poem-bar py-3">
@@ -26,7 +31,7 @@ const PoemBar = (props)=>{
                             Mike <img src={User} height='30px' className="ms-2" />
                         </div>
                         :
-                        <button onClick={()=>navigate('/publish')} className="btn btn-next rounded-pill">
+                        <button onClick={handlePublish} className="btn btn-next rounded-pill">
                             Publish Now
                         </button>
                     }                
