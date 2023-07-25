@@ -1,8 +1,27 @@
 import React from "react";
 import Logo from '../assets/poetically-me.png'
 import { useNavigate } from "react-router";
+import { useFormik } from "formik";
+import { loginSchema } from "../schemas";
+import axios from "axios";
 
 const Login = ()=>{
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validationSchema: loginSchema,
+        onSubmit: (values)=>{
+            console.log(values)
+            axios.post('http://localhost:9090/user/login', values).then((res=>{
+                console.log(res.data)
+            })).catch((err)=>{
+                console.log(err)
+            })
+            // navigate('/how-to-publish')
+        }
+    })
     const navigate = useNavigate()
     return (
         <div className="d-flex justify-content-center pt-5 mt-md-4 mx-4 mx-md-0">
@@ -16,12 +35,14 @@ const Login = ()=>{
                 </p>
                 <form>
                     <div className="form-group border rounded border-dark my-3">
-                        <input className="form-control" placeholder="Email" />
+                        <input name="email" onChange={formik.handleChange} onBlur={formik.handleBlur} className="form-control" placeholder="Email" />
                     </div>
+                    {formik.errors.email && formik.touched.email && <div className="text-danger text-start">{formik.errors.email}</div>}
                     <div className="form-group border rounded border-dark my-3">
-                        <input className="form-control" placeholder="Password" />
+                        <input name="password" onChange={formik.handleChange} onBlur={formik.handleBlur} className="form-control" placeholder="Password" />
                     </div>
-                    <button onClick={()=>navigate('/how-to-publish')} className="btn btn-next text-white w-100 my-3 py-2">
+                    {formik.errors.password && formik.touched.password && <div className="text-danger text-start">{formik.errors.password}</div>}
+                    <button onClick={formik.handleSubmit} className="btn btn-next text-white w-100 my-3 py-2">
                         Continue
                     </button>
                 </form>
