@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from '../../assets/poetically-me.png'
 import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import { emailSchema } from "../../schemas";
+import Snackbar from '@mui/material/Snackbar';
+import Backdrop from '@mui/material/Backdrop';
+import { Alert, CircularProgress } from "@mui/material";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Join = ()=>{
+    const api = useSelector(state=>state.ApiReducer.serverApi)
     const navigate = useNavigate()
+    const [error, setError] = useState('')
+    const [open, setOpen] = useState(false)
+    const [openBackdrop, setOpenBackdrop] = useState(false)
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+    
+        setOpen(false);
+    }
     const formik = useFormik({
         initialValues: {
             email: ''
@@ -13,8 +29,26 @@ const Join = ()=>{
         validationSchema: emailSchema,
         onSubmit: (values)=>{
             console.log(values)
-            sessionStorage.setItem('user', JSON.stringify(values))
-            navigate('/join/name')
+            setOpenBackdrop(true)
+            setOpen(false)
+            axios.post(
+                `${api}user/validateEmail`,
+                values
+            ).then(res=>{
+                if (res.data.status) {
+                    sessionStorage.setItem('user', JSON.stringify(values))
+                    navigate('/join/name')
+                } else {
+                    setOpenBackdrop(false)
+                    setOpen(true)
+                    setError(res.data.message)
+                }
+            }).catch(err=>{
+                console.log(err)
+                setOpenBackdrop(false)
+                setOpen(true)
+                setError(err.response.data.message)
+            })
         }
     })
 
@@ -61,9 +95,26 @@ const Join = ()=>{
                 </button>
                 <hr className="my-0" />
                 <p className="pt-2 mb-0 pb-0">
-                    Already a member? <a href="/login" className="text-decoration-none">Sign In</a>
+                    Already a member? <a onClick={()=>{
+                        sessionStorage.setItem('purpose', 'login')
+                        navigate('/login')
+                    }} className="text-decoration-none cursor-pointer">Sign In</a>
                 </p>
             </div>
+
+            {/* SnackBar */}
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                {error}
+                </Alert>
+            </Snackbar>
+            {/* Backdrop */}
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={openBackdrop}
+            >
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </div>
     )
 }
