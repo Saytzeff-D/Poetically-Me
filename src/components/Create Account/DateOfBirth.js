@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Logo from '../../assets/poetically-me.png'
-import LoadingGif from '../../assets/loading.png'
-import Backdrop from '@mui/material/Backdrop';
 import { useNavigate } from "react-router";
 import { getDay, getMonth, getYear } from "../../miscellaneous/date";
 import { Alert } from "@mui/material";
@@ -10,7 +8,6 @@ import { dobSchema } from "../../schemas";
 
 const DateOFBirth = ()=>{
     const navigate = useNavigate()
-    const [open, setOpen] = useState(false)
     const [days, setDays] = useState([])
     const [months, setMonths] = useState([])
     const [years, setYears] = useState([])
@@ -30,7 +27,7 @@ const DateOFBirth = ()=>{
         onSubmit: (values)=>{
             const{ day, month, year } = values
             const dob = month + '/' + day + '/' + year
-            console.log(new Date(dob))
+            // console.log(new Date(dob).toLocaleDateString(), dob)
             let user = JSON.parse(sessionStorage.getItem('user'))
             const userInfo = { ...user, dob }
             sessionStorage.setItem('user', JSON.stringify(userInfo))
@@ -64,7 +61,7 @@ const DateOFBirth = ()=>{
                                 <option>Day</option>
                                 {
                                     days.map((each, i)=>(
-                                        <option value={each}>{each}</option>
+                                        <option key={i} value={each}>{each}</option>
                                     ))
                                 }
                             </select>
@@ -75,7 +72,7 @@ const DateOFBirth = ()=>{
                                 <option>Month</option>
                                 {
                                     months.map((each, i)=>(
-                                        <option value={each}>{each}</option>
+                                        <option key={i} value={each}>{each}</option>
                                     ))
                                 }
                             </select>
@@ -86,7 +83,7 @@ const DateOFBirth = ()=>{
                                 <option>Year</option>
                                 {
                                     years.map((each, i)=>(
-                                        <option value={each}>{each}</option>
+                                        <option key={i} value={each}>{each}</option>
                                     ))
                                 }
                             </select>
@@ -96,13 +93,7 @@ const DateOFBirth = ()=>{
                         Next
                     </button>
                 </div>
-            </div>
-            <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                open={open}
-            >
-                <img src={LoadingGif} className="img-fluid" width='50px' height='5px' />
-            </Backdrop>
+            </div>            
         </div>
     )
 }
