@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from '../assets/poetically-me.png'
 import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
 import axios from "axios";
+import { Alert } from "@mui/material";
 
 const Login = ()=>{
+    const [error, setError] = useState('')
+    const [isLoading, setIsLoading] = useState(false)
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -13,13 +16,21 @@ const Login = ()=>{
         },
         validationSchema: loginSchema,
         onSubmit: (values)=>{
-            console.log(values)
+            setError('')
+            setIsLoading(true)
             axios.post('http://localhost:9090/user/login', values).then((res=>{
                 console.log(res.data)
+                if (res.data.status) {
+                    navigate('/how-to-publish')
+                } else {
+                    setIsLoading(false)
+                    setError(res.data.message)
+                }
             })).catch((err)=>{
                 console.log(err)
-            })
-            // navigate('/how-to-publish')
+                setIsLoading(false)
+                setError(err.response.data.message)
+            })            
         }
     })
     const navigate = useNavigate()
@@ -34,6 +45,15 @@ const Login = ()=>{
                     To upload your EPUB sign in with your poetically me details
                 </p>
                 <form>
+                    {
+                        error !== ''
+                        ?
+                        <Alert severity="error">
+                            {error}
+                        </Alert>
+                        :
+                        ''
+                    }
                     <div className="form-group border rounded border-dark my-3">
                         <input name="email" onChange={formik.handleChange} onBlur={formik.handleBlur} className="form-control" placeholder="Email" />
                     </div>
@@ -42,7 +62,7 @@ const Login = ()=>{
                         <input name="password" onChange={formik.handleChange} onBlur={formik.handleBlur} className="form-control" placeholder="Password" />
                     </div>
                     {formik.errors.password && formik.touched.password && <div className="text-danger text-start">{formik.errors.password}</div>}
-                    <button onClick={formik.handleSubmit} className="btn btn-next text-white w-100 my-3 py-2">
+                    <button onClick={formik.handleSubmit} className={isLoading ? 'btn disabled text-next w-100 my-3 py-2' : 'btn btn-next text-white w-100 my-3 py-2'}>
                         Continue
                     </button>
                 </form>
