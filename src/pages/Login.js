@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from '../assets/poetically-me.png'
 import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
 import axios from "axios";
 import { Alert } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const Login = ()=>{
+    const api = useSelector(state=>state.ApiReducer.serverApi)
     const [error, setError] = useState('')
+    const [purpose, setPurpose] = useState()
+    const navigate = useNavigate()
     const [isLoading, setIsLoading] = useState(false)
     const formik = useFormik({
         initialValues: {
@@ -18,10 +22,15 @@ const Login = ()=>{
         onSubmit: (values)=>{
             setError('')
             setIsLoading(true)
-            axios.post('http://localhost:9090/user/login', values).then((res=>{
+            axios.post(`${api}user/login`, values).then((res=>{
                 console.log(res.data)
-                if (res.data.status) {
-                    navigate('/how-to-publish')
+                sessionStorage.setItem('token', JSON.stringify(res.data.token))
+                if (res.data.status) {                
+                    if (purpose == 'publish') {
+                        navigate('/how-to-publish')
+                    } else {
+                        navigate('/profile')
+                    }
                 } else {
                     setIsLoading(false)
                     setError(res.data.message)
@@ -33,7 +42,10 @@ const Login = ()=>{
             })            
         }
     })
-    const navigate = useNavigate()
+    useEffect(()=>{
+        setPurpose(sessionStorage.getItem('purpose'))
+    }, [])
+    
     return (
         <div className="d-flex justify-content-center pt-5 mt-md-4 mx-4 mx-md-0">
             <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
@@ -63,7 +75,13 @@ const Login = ()=>{
                     </div>
                     {formik.errors.password && formik.touched.password && <div className="text-danger text-start">{formik.errors.password}</div>}
                     <button onClick={formik.handleSubmit} className={isLoading ? 'btn disabled text-next w-100 my-3 py-2' : 'btn btn-next text-white w-100 my-3 py-2'}>
-                        Continue
+                        {
+                            purpose == 'publish'
+                            ?
+                            'Continue'
+                            :
+                            'Sign in'
+                        }
                     </button>
                 </form>
                 <hr className="my-0" />
