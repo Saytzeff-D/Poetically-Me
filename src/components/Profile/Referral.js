@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 const Referrals = ()=>{
+    const currentUser = useSelector(state=>state.UserReducer.userInfo)
     const [hostName, setHostName] = useState('')
     useEffect(()=>{
-        setHostName(window.location.host + '/join/')
+        setHostName(window.location.host + '/join/' + currentUser.referralCode)
     })
     return (
         <div className="container">
