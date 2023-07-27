@@ -4,7 +4,6 @@ const Referrals = ()=>{
     const [hostName, setHostName] = useState('')
     useEffect(()=>{
         setHostName(window.location.host + '/join/')
-        // console.log(Math.random().toString(36).substr(2, 8))
     })
     return (
         <div className="container">
