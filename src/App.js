@@ -11,7 +11,7 @@ import Country from './components/Create Account/Country';
 import State from './components/Create Account/State';
 import BestDescribe from './components/Create Account/BestDescribe';
 import DateOFBirth from './components/Create Account/DateOfBirth';
-import SocialConnection from './components/Create Account/SocialConnection';
+import Join from './components/Create Account/Join';
 import Password from './components/Create Account/Password';
 import EmailVerification from './components/Create Account/EmailVerification';
 import Info from './components/Create Account/Info';
@@ -104,7 +104,7 @@ function App() {
         >
           <Route 
             path='/join/' 
-            element={<Name />} 
+            element={<Join />}            
           />
           <Route 
             path='/join/username' 
@@ -127,8 +127,8 @@ function App() {
             element={<DateOFBirth />} 
           />
           <Route 
-            path='/join/social' 
-            element={<SocialConnection />} 
+            path='/join/name' 
+            element={<Name />} 
           />
           <Route 
             path='/join/password' 
