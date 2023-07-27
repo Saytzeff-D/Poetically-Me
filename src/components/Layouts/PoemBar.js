@@ -32,7 +32,7 @@ const PoemBar = (props)=>{
                         </div>
                         :
                         <button onClick={handlePublish} className="btn btn-next rounded-pill">
-                            Publish Now
+                            Join / Publish
                         </button>
                     }                
                 </div>
