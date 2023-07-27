@@ -7,10 +7,16 @@ const Country = ()=>{
     const navigate = useNavigate()
     const [countries, setCountries] = useState([])
     useEffect(()=>{
-        axios.get('https://restcountries.com/v3.1/all?fields=name,flags')
+        axios.get('https://api.countrystatecity.in/v1/countries', {
+            headers: {
+                'X-CSCAPI-KEY': 'API_KEY'
+            }
+        })
             .then((res)=>{
                 console.log(res.data)
                 setCountries(res.data)
+            }).catch(err=>{
+                console.log(err)
             })
     }, [])
     return(
