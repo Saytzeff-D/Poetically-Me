@@ -14,7 +14,7 @@ const Publish = ()=>{
                 <p className="px-2">
                     To upload your EPUB sign in with your poetically me details
                 </p>
-                <button onClick={()=> navigate('/join/social')} className="btn border border-dark border-1 w-100 text-next py-2">
+                <button onClick={()=> navigate('/join')} className="btn border border-dark border-1 w-100 text-next py-2">
                     Create Account
                 </button>
                 <button onClick={()=>navigate('/login')} className="btn btn-next w-100 text-white my-4 py-2">
@@ -22,7 +22,7 @@ const Publish = ()=>{
                 </button>
                 <hr className="my-0" />
                 <p className="pt-2 mb-0 pb-0 fs-7">
-                    Already a member? <a href="/" className="text-decoration-none">Sign In</a>
+                    Already a member? <a href="/login" className="text-decoration-none">Sign In</a>
                 </p>
             </div>
         </div>
