@@ -15,8 +15,7 @@ const BestDescribe = ()=>{
             bestDescribe: ''
         },
         validationSchema: bestDescribeSchema,
-        onSubmit: (values)=>{
-            console.log(values)
+        onSubmit: (values)=>{    
             const { bestDescribe } = values
             let user = JSON.parse(sessionStorage.getItem('user'))
             const userInfo = { ...user, bestDescribe }
