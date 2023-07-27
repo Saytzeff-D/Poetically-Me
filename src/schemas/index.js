@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+const pwordRegExp = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{6,}$/
 
 export const loginSchema = yup.object().shape({
     email: yup.string().email('Invalid Email').required('Email is required'),
@@ -34,4 +35,13 @@ export const dobSchema = yup.object().shape({
 
 export const bestDescribeSchema = yup.object().shape({
     bestDescribe: yup.string().required('Choose an option')
+})
+
+export const passwordSchema = yup.object().shape({
+    password: yup.string().matches(pwordRegExp, {message: 'Combine upper and lowercase letters, symbols and numbers'}).min(6, '6 characters or longer.').required('Required'),
+    confirmPassword: yup.string().oneOf([yup.ref('password'), null], 'Password must match').required('Required')
+})
+
+export const confirmationCodeSchema = yup.object().shape({
+    code: yup.string().required('Enter the confirmation code sent to you')
 })
