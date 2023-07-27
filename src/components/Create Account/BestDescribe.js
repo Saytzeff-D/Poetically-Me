@@ -17,6 +17,10 @@ const BestDescribe = ()=>{
         validationSchema: bestDescribeSchema,
         onSubmit: (values)=>{
             console.log(values)
+            const { bestDescribe } = values
+            let user = JSON.parse(sessionStorage.getItem('user'))
+            const userInfo = { ...user, bestDescribe }
+            sessionStorage.setItem('user', JSON.stringify(userInfo))
             navigate('/join/dateOfBirth')
         }
     })
@@ -42,19 +46,19 @@ const BestDescribe = ()=>{
                         :
                         ''
                     }
-                    <div onClick={()=>chooseList('opt1')} className="form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
+                    <div onClick={()=>chooseList('opt1')} className="disab form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
                         <input onChange={formik.handleChange} name="bestDescribe" value='I am here to read' className="form-check-input" type="radio" id="opt1" />
                         <label className="form-check-label fs-7 cursor-pointer">
                             I am here to read
                         </label>
                     </div>
-                    <div onClick={()=>chooseList('opt2')} className="form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
+                    <div onClick={()=>chooseList('opt2')} className="disab form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
                         <input onChange={formik.handleChange} name="bestDescribe" value='I am here to publish' className="form-check-input" type="radio" id="opt2" />
                         <label className="form-check-label fs-7 cursor-pointer">
                             I am here to publish
                         </label>
                     </div>
-                    <div onClick={()=>chooseList('opt3')} className="form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
+                    <div onClick={()=>chooseList('opt3')} className="disab form-check border border-dark cursor-pointer py-2 px-5 rounded my-4">
                         <input onChange={formik.handleChange} name="bestDescribe" value='I am here for both' className="form-check-input" type="radio" id="opt3" />
                         <label className="form-check-label fs-7 cursor-pointer">
                             I am here for both
