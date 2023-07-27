@@ -18,6 +18,20 @@ export const usernameSchema = yup.object().shape({
     username: yup.string().required('Required')
 })
 
+export const countrySchema = yup.object().shape({
+    country: yup.string().required('Required')
+})
+
+export const stateSchema = yup.object().shape({
+    state: yup.string().required('Required')
+})
+
+export const dobSchema = yup.object().shape({
+    day: yup.string().required('Select a Day'),
+    month: yup.string().required('Select a month'),
+    year: yup.string().required('Select a year')
+})
+
 export const bestDescribeSchema = yup.object().shape({
     bestDescribe: yup.string().required('Choose an option')
 })
