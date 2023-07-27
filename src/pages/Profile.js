@@ -14,13 +14,38 @@ import Toolbar from '@mui/material/Toolbar';
 import NoPicuture from '../assets/no_picture.png'
 import ProfileMenu from "../components/Layouts/ProfileMenu";
 import ProfileBar from "../components/Layouts/ProfileBar";
+import { useDispatch, useSelector } from "react-redux";
+import Backdrop from '@mui/material/Backdrop';
+import { CircularProgress } from "@mui/material";
+import axios from "axios";
 
 const Profile = (props)=>{
+    const api = useSelector(state=>state.ApiReducer.serverApi)
+    const currentUser = useSelector(state=>state.UserReducer.userInfo)
+    const dispatch = useDispatch()
     const drawerWidth = 255
     const [mobileOpen, setMobileOpen] = useState(false)
+    const [open, setOpen] = useState(true)
     const { window } = props
 
     useEffect(()=>{
+        const token = JSON.parse(sessionStorage.getItem('token'))
+        console.log(token)
+        axios.get(
+            `${api}user/currentUser`,
+            {
+                headers: {
+                    'authorization': `Bearer ${token}`,
+                    'content-type': 'application/json'
+                }
+            }
+        ).then(res=>{
+            dispatch({type: 'userInfo', payload: res.data.user})
+            setOpen(false)
+            // console.log(res.data)
+        }).catch(err=>{
+            console.log(err)
+        })
     })
 
     const handleDrawerToggle = ()=>{
@@ -30,7 +55,7 @@ const Profile = (props)=>{
     const drawer = (
         <div className='bg-sidebar border-0'>
             <Toolbar className='my-0 justify-content-center'>
-                <img className="sideNavLogo" width={'100px'} height={'100px'} src={NoPicuture} alt="poetically logo" />
+                <img className="sideNavLogo" width={'100px'} height={'100px'} src={currentUser.picture} alt="user" />                
             </Toolbar>
             <ProfileMenu />
         </div>
@@ -107,6 +132,14 @@ const Profile = (props)=>{
             <div className="d-lg-none d-block">
                 <Footer />
             </div>
+            {/* Backdrop */}
+            <Backdrop
+                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                open={open}
+            >
+                {/* <img src={LoadingGif} className="img-fluid" width='50px' height='5px' /> */}
+                <CircularProgress color="inherit" />
+            </Backdrop>
         </Fragment>
     )
 }
