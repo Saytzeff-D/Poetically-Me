@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 const Publish = ()=>{
     const navigate = useNavigate()
+    
     return (
         <div className="d-flex justify-content-center pt-5 mt-4 mx-4 mx-md-0">
             <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
@@ -17,12 +18,18 @@ const Publish = ()=>{
                 <button onClick={()=> navigate('/join')} className="btn border border-dark border-1 w-100 text-next py-2">
                     Create Account
                 </button>
-                <button onClick={()=>navigate('/login')} className="btn btn-next w-100 text-white my-4 py-2">
+                <button onClick={()=>{
+                    sessionStorage.setItem('purpose', 'publish')
+                    navigate('/login')
+                }} className="btn btn-next w-100 text-white my-4 py-2">
                     Continue
                 </button>
                 <hr className="my-0" />
                 <p className="pt-2 mb-0 pb-0 fs-7">
-                    Already a member? <a href="/login" className="text-decoration-none">Sign In</a>
+                    Already a member? <a onClick={()=>{
+                        sessionStorage.setItem('purpose', 'login')
+                        navigate('/login')
+                    }} className="text-decoration-none cursor-pointer">Sign In</a>
                 </p>
             </div>
         </div>
