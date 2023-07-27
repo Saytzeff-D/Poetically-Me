@@ -5,15 +5,24 @@ import { useNavigate } from "react-router";
 import { useFormik } from "formik";
 import { stateSchema } from "../../schemas";
 import { Alert } from "@mui/material";
+import { useSelector } from "react-redux";
 
 const State = ()=>{
+    const countryApi = useSelector(state=>state.ApiReducer.countryApi)
     const navigate = useNavigate()
     const [countries, setCountries] = useState([])
     useEffect(()=>{
-        axios.get('https://restcountries.com/v3.1/all?fields=name,flags')
+        const ISO2 = JSON.parse(sessionStorage.getItem('region'))
+        axios.get(`${countryApi}${ISO2}/states`, {
+            headers: {
+                'X-CSCAPI-KEY': 'TWo1bTJQSmVYWDlPV0FqbTRHd2FjYWdoMkRXVlFkbWdwUHhyQUlSRQ=='
+            }
+        })
             .then((res)=>{
                 console.log(res.data)
                 setCountries(res.data)
+            }).catch(err=>{
+                console.log(err)
             })
     }, [])
     const formik = useFormik({
@@ -22,7 +31,6 @@ const State = ()=>{
         },
         validationSchema: stateSchema,
         onSubmit: (values)=>{
-            console.log(values)
             const { state } = values
             let user = JSON.parse(sessionStorage.getItem('user'))
             const userInfo = { ...user, state }
@@ -53,12 +61,11 @@ const State = ()=>{
                     <div className="form-group my-4">
                         <select onChange={formik.handleChange} onBlur={formik.handleBlur} name="state" className="form-select">
                             <option value={''}>Select State</option>
-                            <option value={'Oyo'}>Oyo</option>
-                            {/* {
+                            {
                                 countries.map((each, index)=>(
-                                    <option key={index}>{each.name.common}</option>
+                                    <option key={index}>{each.name}</option>
                                 ))
-                            } */}
+                            }
                         </select>
                     </div>
                     <button onClick={formik.handleSubmit} className="btn mb-4 btn-block w-100 py-2 fw-normal btn-next text-white">
