@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 
 const Info = ()=>{
     const navigate = useNavigate()
+    
     return (
         <div className="d-flex justify-content-center my-md-5 py-5 mx-md-0 mx-4">
             <div className="bg-white col-md-5 col-lg-3 p-3 mb-md-0 mb-5 mt-3 text-center rounded shadow-lg animate__animated animate__slow animate__fadeIn">
