@@ -26,7 +26,7 @@ const EmailVerification = ()=>{
                     </button>
                     <hr className="my-0" />
                     <p className="pt-2 mb-0 pb-0">
-                        Already a member? <a href="/" className="text-decoration-none">Sign In</a>
+                        Already a member? <a href="/login" className="text-decoration-none">Sign In</a>
                     </p>
                 </form>
             </div>
