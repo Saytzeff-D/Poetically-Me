@@ -1,16 +1,78 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 import Save from '@mui/icons-material/Save';
-import User from '../../assets/no_picture.png'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { Alert, Snackbar } from '@mui/material';
 
 const AccountOverview = ()=> {
+    const dispatch = useDispatch()
+    const currentUser = useSelector(state=>state.UserReducer.userInfo)
+    const [picture, setPicture] = useState()
+    const [isUploading, setIsUploading] = useState(false)
+    const [isDisabled, setIsDisabled] = useState(true)
+    const api = useSelector(state=>state.ApiReducer.serverApi)
+    const token = JSON.parse(sessionStorage.getItem('token'))
+    const [open, setOpen] = useState(false)
+    const [error, setError] = useState('')
+    const [success, setSuccess] = useState('')
+
     const pickPicture = ()=>{
         document.getElementById('fileInput').click()
     }
-    const currentUser = useSelector(state=>state.UserReducer.userInfo)
+    const handleChange = (e)=>{
+        const file = e.target.files[0]
+        if (file) {
+            const fs = new FileReader()
+            fs.readAsDataURL(file)
+            fs.onload = ()=>{            
+                setPicture(fs.result)
+                setIsDisabled(false)
+            }
+        } else { }
+    }
+    const changePicture = ()=>{
+        setIsUploading(true)
+        axios.post(
+            `${api}user/profilePicture`,
+            {picture},
+            {
+                headers: {
+                    'authorization': `Bearer ${token}`,
+                    'content-type': 'application/json'
+                }
+            }
+        ).then(res=>{
+            if(res.data.status){
+                dispatch({type: 'userInfo', payload: res.data.user})
+                setError('')
+                setSuccess(res.data.message)
+                setOpen(true)
+                setIsUploading(false)
+            }else{
+                setError(res.data.message)
+                setIsUploading(false)
+                setOpen(true)
+            }
+        }).catch(err=>{
+            console.log(err)
+            setError(err.response.data.message || err.message)
+            setOpen(true)
+            setIsUploading(false)
+        })
+    }
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }    
+        setOpen(false);
+    }
+
+    useEffect(()=>{
+        setPicture(currentUser.picture)
+    }, [currentUser])
     return (
         <Fragment>
             <Tabs className='my-2' variant='pills' defaultActiveKey={1}>
@@ -61,15 +123,36 @@ const AccountOverview = ()=> {
                         Click on the image to pick your desired picture
                     </p>
                     <div className="thumbnail mx-1" onClick={pickPicture}>
-                        <input type='file' className='d-none' id='fileInput' />
+                        <input type='file' className='d-none' id='fileInput' onChange={(e)=>handleChange(e)} />
                         <div className="icon">
                             <i className="fa fa-plus fa-2x" aria-hidden="true"></i>
                         </div>
-                        <img src={User} />
+                        <img src={picture} className='rounded-circle img-fluid picture' />
                     </div>
-                        <button className='btn btn-next py-2 mx-1'>
-                            Change Picture
+                        <button onClick={changePicture} className={isUploading ? 'btn disabled py-2 mx-1 rounded-0' : 'btn btn-next py-2 mx-1'} disabled={isDisabled} >
+                            {
+                                isUploading 
+                                ? 
+                                (
+                                    <div>
+                                        <span className='spinner-border spinner-border-sm'></span> Uploading
+                                    </div>
+                                ) 
+                                : 
+                                'Change Picture'
+                            }
                         </button>
+                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity={error !== '' ? 'error' : 'success'} variant='filled' sx={{ width: '100%' }}>
+                                {
+                                    error !== ''
+                                    ?
+                                    error
+                                    :
+                                    success
+                                }
+                            </Alert>
+                        </Snackbar>
                 </Tab>
             </Tabs>
         </Fragment>

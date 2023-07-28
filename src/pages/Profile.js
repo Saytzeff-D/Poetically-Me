@@ -20,6 +20,7 @@ import { CircularProgress } from "@mui/material";
 import axios from "axios";
 
 const Profile = (props)=>{
+    const navigate = useNavigate()
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const currentUser = useSelector(state=>state.UserReducer.userInfo)
     const dispatch = useDispatch()
@@ -30,7 +31,6 @@ const Profile = (props)=>{
 
     useEffect(()=>{
         const token = JSON.parse(sessionStorage.getItem('token'))
-        console.log(token)
         axios.get(
             `${api}user/currentUser`,
             {
@@ -44,9 +44,11 @@ const Profile = (props)=>{
             setOpen(false)
             // console.log(res.data)
         }).catch(err=>{
-            console.log(err)
+            sessionStorage.setItem('purpose', 'login')
+            navigate('/login')
+            // console.log(err)
         })
-    })
+    }, [])
 
     const handleDrawerToggle = ()=>{
         setMobileOpen(!mobileOpen)
@@ -55,14 +57,14 @@ const Profile = (props)=>{
     const drawer = (
         <div className='bg-sidebar border-0'>
             <Toolbar className='my-0 justify-content-center'>
-                <img className="sideNavLogo" width={'100px'} height={'100px'} src={currentUser.picture} alt="user" />                
+                <img className="sideNavLogo rounded-circle mt-2" width={'100px'} height={'100px'} src={currentUser.picture} alt="user" />                
             </Toolbar>
             <ProfileMenu />
         </div>
     )
 
     const container = window !== undefined ? () => window().document.body : undefined;
-    const navigate = useNavigate()
+
     return (
         <Fragment>  
             <Header />

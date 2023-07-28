@@ -20,7 +20,7 @@ const ProfileBar = ()=>{
                     </div>
                     <div className="dropdown cursor-pointer">
                         <div className="bg-poetical-orange dropdown-toggle user-pill text-white px-3 py-3 rounded-pill" data-bs-toggle="dropdown" aria-expanded="false">
-                            {currentUser.firstName} <img src={currentUser.picture} height='30px' className="ms-2" />                    
+                            {currentUser.firstName} <img src={currentUser.picture} height='30px' width={'30px'} className="ms-2 rounded-circle" />                    
                         </div> 
                         <ul className="dropdown-menu">
                             <li><a className="dropdown-item" href="/">Logout</a></li>                            
