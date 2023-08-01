@@ -5,13 +5,14 @@ import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
 import axios from "axios";
 import { Alert } from "@mui/material";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = ()=>{
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const [error, setError] = useState('')
     const [purpose, setPurpose] = useState()
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [isLoading, setIsLoading] = useState(false)
     const formik = useFormik({
         initialValues: {
@@ -26,11 +27,13 @@ const Login = ()=>{
                 console.log(res.data)
                 sessionStorage.setItem('token', JSON.stringify(res.data.token))
                 if (res.data.status) {                
-                    if (purpose == 'publish') {
+                    if (purpose == 'publish' && sessionStorage.getItem('action') == 'aboutPublishing') {
+                        dispatch({type: 'nextStep', payload: 3})
+                        navigate('/publish-steps')
+                    } else if(purpose == 'publish' && !sessionStorage.getItem('action')) {
                         navigate('/how-to-publish')
-                    } else {
-                        navigate('/profile')
-                    }
+                    } else
+                    navigate('/profile')
                 } else {
                     setIsLoading(false)
                     setError(res.data.message)
@@ -38,7 +41,7 @@ const Login = ()=>{
             })).catch((err)=>{
                 console.log(err)
                 setIsLoading(false)
-                setError(err.response.data.message)
+                !err.response ? setError(err.message) : setError(err.response.data.message)
             })            
         }
     })
