@@ -45,3 +45,30 @@ export const passwordSchema = yup.object().shape({
 export const confirmationCodeSchema = yup.object().shape({
     code: yup.string().required('Enter the confirmation code sent to you')
 })
+
+export const howToPublishSchema = yup.object().shape({
+    how: yup.string().required('Choose an option')
+})
+
+export const uploadPoemSchema = yup.object().shape({
+    bookFile: yup.string().required('Choose a sample book file'),
+    coverImage: yup.string().required('Choose a cover image')
+})
+
+export const addTitleSchema = yup.object().shape({
+    title: yup.string().required('Required'),
+    poet: yup.string().required('Required'),
+    desc: yup.string().required('Required')
+})
+
+export const otherInfoSchema = yup.object().shape({
+    category: yup.string().required('All fields are required'),
+    lang: yup.string().required('All fields are required'),
+    explicitContent: yup.string().required('All fields are required')
+})
+
+export const OtherDetailsSchema = yup.object().shape({
+    publisherName: yup.string().required('All fields are required'),
+    ISBN: yup.string().required('All fields are required'),
+    publicationDate: yup.string().required('All fields are required')
+})
