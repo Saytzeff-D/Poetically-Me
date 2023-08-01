@@ -10,13 +10,13 @@ const AddTitle = ()=>{
         initialValues: {
             title: '',
             poet: '',
-            desc: ''
+            poem_desc: ''
         },
         validationSchema: addTitleSchema,
         onSubmit: (values)=>{    
-            const { title, poet, desc } = values
+            const { title, poet, poem_desc } = values
             let publish = JSON.parse(sessionStorage.getItem('publish'))
-            sessionStorage.setItem('publish', JSON.stringify({...publish, title, poet, desc}))
+            sessionStorage.setItem('publish', JSON.stringify({...publish, title, poet, poem_desc}))
             dispatch({type: 'nextStep', payload: 2})
         }
     })
@@ -36,10 +36,10 @@ const AddTitle = ()=>{
                         {formik.errors.poet}
                     </Alert>
                     :
-                    formik.errors.desc
+                    formik.errors.poem_desc
                     ?
                     <Alert severity='error'>
-                        {formik.errors.desc}
+                        {formik.errors.poem_desc}
                     </Alert>
                     :
                     ''
@@ -54,7 +54,7 @@ const AddTitle = ()=>{
                     <input className='form-control border border-dark' onChange={formik.handleChange} onBlur={formik.handleBlur} name='poet' placeholder="Poet's name" />
                 </div>
                 <div className='form-group my-4'>
-                    <textarea className='form-control border border-dark' onChange={formik.handleChange} onBlur={formik.handleBlur} name='desc' rows={3} placeholder='Description(at least 50 characters)'></textarea>
+                    <textarea className='form-control border border-dark' onChange={formik.handleChange} onBlur={formik.handleBlur} name='poem_desc' rows={3} placeholder='Description(at least 50 characters)'></textarea>
                 </div>
                 <button type='submit' onClick={formik.handleSubmit} className='btn btn-next py-2 w-100'>
                     Continue

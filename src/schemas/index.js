@@ -58,7 +58,7 @@ export const uploadPoemSchema = yup.object().shape({
 export const addTitleSchema = yup.object().shape({
     title: yup.string().required('Required'),
     poet: yup.string().required('Required'),
-    desc: yup.string().required('Required')
+    poem_desc: yup.string().required('Required')
 })
 
 export const otherInfoSchema = yup.object().shape({

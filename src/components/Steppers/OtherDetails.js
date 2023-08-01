@@ -55,15 +55,20 @@ const OtherDetails = ()=>{
                 sessionStorage.removeItem('action')
                 setBackdrop(false)
                 console.log(res.data)
+                if (res.data.status) {
+                    setOpen(true)
+                } else {
+                    setError('Unable to upload poem')
+                }
             }).catch(err=>{
                 setBackdrop(false)
                 console.log(err)
                 if (err.response) {
-                    if (err.response.data.message == 'Token Expired' || 'Invalid Token') {
+                    if (err.response.data.message == 'Token Expired' || err.response.data.message == 'Invalid Token') {
                         sessionStorage.setItem('action', 'aboutPublishing')
                         navigate('/login')
-                    } else {
-                        setError(err.response.data.message)
+                    } else {                        
+                        setError(err.response.data.message + '. Submit again!')
                     }
                 } else {
                     setError(err.message)
