@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -9,7 +9,7 @@ import AddTitle from "../components/Steppers/AddTitle";
 import OtherDetails from "../components/Steppers/OtherDetails";
 import SetOtherInfo from "../components/Steppers/SetOtherInfo";
 
-const PublishSteps = ()=>{
+const PublishSteps = ()=>{    
     const activeStep = useSelector(state=>state.StepperReducer.activeStep)
     
     return (
