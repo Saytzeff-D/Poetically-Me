@@ -11,13 +11,13 @@ const Statements = ()=>{
             </p>
             <hr />
             <div>
-                <div className="form-group d-flex">
+                <div className="form-group d-flex flex-sm-row flex-column">
                     <select className="form-select mx-1">
                         <option>Select Statement Type</option>
                         <option>Purchases</option>
                         <option>Sales</option>
                     </select>
-                    <button className="btn btn-next px-2 mx-1 py-2">Retrieve</button>
+                    <button className="btn btn-next px-2 mx-1 py-2 my-md-0 my-2">Retrieve</button>
                 </div>
             </div>
         </div>
