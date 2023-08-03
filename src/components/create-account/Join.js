@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from '../../assets/poetically-me.png'
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useFormik } from "formik";
 import { emailSchema } from "../../schemas";
 import Snackbar from '@mui/material/Snackbar';
@@ -10,11 +10,16 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 const Join = ()=>{
+    const { code } = useParams()
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const navigate = useNavigate()
     const [error, setError] = useState('')
     const [open, setOpen] = useState(false)
     const [openBackdrop, setOpenBackdrop] = useState(false)
+
+    useEffect(()=>{
+        console.log(code)
+    }, [])
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
           return;
@@ -28,6 +33,7 @@ const Join = ()=>{
         },
         validationSchema: emailSchema,
         onSubmit: (values)=>{
+            values.referralCode = code
             console.log(values)
             setOpenBackdrop(true)
             setOpen(false)
@@ -47,7 +53,7 @@ const Join = ()=>{
                 console.log(err)
                 setOpenBackdrop(false)
                 setOpen(true)
-                setError(err.response.data.message)
+                !err.response ? setError(err.message) : setError(err.response.data.message)
             })
         }
     })
