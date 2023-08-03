@@ -3,17 +3,19 @@ import Book from '../../assets/book.png'
 import Book1 from '../../assets/Book1.png'
 import Book2 from '../../assets/Book2.png'
 import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { Alert, Skeleton } from "@mui/material";
+import { Alert, Dialog, DialogActions, DialogContent, DialogTitle, Skeleton } from "@mui/material";
 
 const MyPoems = ()=>{
+    const dispatch = useDispatch()
     const [error, setError] = useState('')
     const [poems, setPoems] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const navigate = useNavigate()
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const token = JSON.parse(sessionStorage.getItem('token'))
+    const [dialogOpen, setDialogOpen] = useState(false)
     useEffect(()=>{
         axios.get(
             `${api}poem/my-poems`,
@@ -29,10 +31,23 @@ const MyPoems = ()=>{
             setPoems(res.data.poems)
             console.log(res.data)
         }).catch(err=>{
+            setIsLoading(false)
             console.log(err)
             setError('Internal Server Error. Refresh this page')
         })
     }, [])
+    const clickPoem = (poem)=>{
+        if (poem.visibility == null) {
+            dispatch({type: 'summary', payload: poem})
+            sessionStorage.setItem('poem', JSON.stringify(poem))
+            navigate('/poem-details')
+        } else {
+            setDialogOpen(true)
+        }
+    }
+    const onNoClick = ()=>{
+        setDialogOpen(false)
+    }
     return (
         <Fragment>
             <div className="container">                
@@ -66,7 +81,7 @@ const MyPoems = ()=>{
                     <div className="container row w-100">
                         {
                             poems.map((val, i)=>(
-                                <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/summary')}>
+                                <div key={i} className="col-md-3 cursor-pointer" onClick={()=>clickPoem(val)}>
                                     <div className="card border-0">
                                         <img src={val.coverImage} className="card-img-top img-fluid poem-book" />
                                         <div className="card-body">
@@ -80,9 +95,13 @@ const MyPoems = ()=>{
                         }                  
                     </div>
                     :
-                    <Alert severity="warning">
+                    poems.length == 0 && error == ''
+                    ?
+                    <Alert severity="info">
                         You haven't uploaded any poems
                     </Alert>
+                    :
+                    ''
                 }
             </div>
             {
@@ -92,6 +111,16 @@ const MyPoems = ()=>{
                     {error}
                 </Alert>
             }
+            <Dialog open={dialogOpen} className="" maxWidth={'xs'} fullWidth={true}>
+                <DialogContent className="fs-5 fw-light bg-next">
+                <DialogTitle className="fs-4 fw-bold">Visibility Status</DialogTitle>
+                    <p className="my-0 ps-4 fs-6">This poem has already been placed in your shop for sale. Will you like to privatise it?</p>
+                <DialogActions>
+                    <button className="btn py-2 px-3 btn-dark">Yes</button>
+                    <button onClick={onNoClick} className="btn py-2 px-3 btn-light">No</button>
+                </DialogActions>
+                </DialogContent>
+            </Dialog>
         </Fragment>
     )
 }
