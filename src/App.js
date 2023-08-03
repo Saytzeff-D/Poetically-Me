@@ -4,33 +4,35 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
-import Name from './components/Create Account/Name';
-import Username from './components/Create Account/Username';
+import Name from './components/create-account/Name';
+import Username from './components/create-account/Username';
 import Redirect from './pages/Redirect';
-import Country from './components/Create Account/Country';
-import State from './components/Create Account/State';
-import BestDescribe from './components/Create Account/BestDescribe';
-import DateOFBirth from './components/Create Account/DateOfBirth';
-import Join from './components/Create Account/Join';
-import Password from './components/Create Account/Password';
-import EmailVerification from './components/Create Account/EmailVerification';
-import Info from './components/Create Account/Info';
+import Country from './components/create-account/Country';
+import State from './components/create-account/State';
+import BestDescribe from './components/create-account/BestDescribe';
+import DateOFBirth from './components/create-account/DateOfBirth';
+import Join from './components/create-account/Join';
+import Password from './components/create-account/Password';
+import EmailVerification from './components/create-account/EmailVerification';
+import Info from './components/create-account/Info';
 import Publish from './pages/Publish';
 import HowToPublish from './pages/HowToPublish';
 import PublishSteps from './pages/PublishSteps';
-import TopPoems from './components/Poems/TopPoems';
+import TopPoems from './components/poems/TopPoems';
 import Profile from './pages/Profile';
 import PoemDetails from './pages/PoemDetails';
 import RightsAndPricing from './pages/Right-Pricing';
 import Completed from './pages/Completed';
-import AddNewCountries from './pages/AddNewCountries';
-import AccountOverview from './components/Profile/AccountOverview';
-import MyPoems from './components/Profile/MyPoems';
-import MyLibrary from './components/Profile/MyLibrary';
-import Statements from './components/Profile/Statements';
-import Referrals from './components/Profile/Referral';
-import Wallet from './components/Profile/Wallet';
-import MyShop from './components/Profile/MyShop';
+import SetPoemVisibility from './pages/SetPoemVisibility';
+import AccountOverview from './components/profile/AccountOverview';
+import MyLibrary from './components/profile/MyLibrary';
+import Statements from './components/profile/Statements';
+import Referrals from './components/profile/Referral';
+import Wallet from './components/profile/Wallet';
+import MyShop from './components/profile/MyShop';
+import MyPoems from './components/profile/MyPoems';
+import Cart from './pages/Cart';
+import PickedPoem from './pages/PickedPoem';
 
 function App() {
   return (
@@ -81,18 +83,26 @@ function App() {
             path='/home/'
             element={<TopPoems />}
           />
+          <Route 
+            path='/home/picked'
+            element={<PickedPoem />}
+          />
         </Route>
         <Route 
-          path='/summary'
+          path='/poem-details'
           element={<PoemDetails />}
+        />
+        <Route 
+          path='/cart'
+          element={<Cart />}
         />
         <Route 
           path='/rights-and-pricing'
           element={<RightsAndPricing />}
         />
         <Route 
-          path='/add-new-countries'
-          element={<AddNewCountries />}
+          path='/visibility-and-pricing'
+          element={<SetPoemVisibility />}
         />
         <Route 
           path='/completed'
@@ -103,7 +113,7 @@ function App() {
           element={<Register />}
         >
           <Route 
-            path='/join/' 
+            path='/join/:code' 
             element={<Join />}            
           />
           <Route 
