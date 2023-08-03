@@ -8,20 +8,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import Logo from '../assets/poetically-me.png'
-import SidebarList from "../components/Layouts/SidebarList";
-import PoemBar from "../components/Layouts/PoemBar";
+import SidebarList from "../components/layouts/SidebarList";
+import PoemBar from "../components/layouts/PoemBar";
 import { Outlet } from "react-router";
-import Footer from "../components/Layouts/Footer";
+import Footer from "../components/layouts/Footer";
 
-const Home = (props)=>{
+const Home = (props)=>{    
     const drawerWidth = 255
     const [mobileOpen, setMobileOpen] = useState(false)
-    const { window } = props
-    const [jwt, setJwt] = useState()
+    const { window } = props    
 
-    useEffect(()=>{
-        setJwt(JSON.parse(localStorage.getItem('jwt')))
-    })
+    useEffect(()=>{    
+    }, [])
 
     const handleDrawerToggle = ()=>{
         setMobileOpen(!mobileOpen)
@@ -60,7 +58,7 @@ const Home = (props)=>{
                     >
                         <MenuIcon />
                     </IconButton>
-                    <PoemBar jwt={jwt} />
+                    <PoemBar />
                 </Toolbar>
                 </AppBar>
                 <Box
