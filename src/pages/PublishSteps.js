@@ -3,11 +3,11 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Logo from '../assets/poetically-me.png'
-import UploadPoem from "../components/Steppers/UploadPoem";
+import UploadPoem from "../components/steppers/UploadPoem";
 import { useSelector } from "react-redux";
-import AddTitle from "../components/Steppers/AddTitle";
-import OtherDetails from "../components/Steppers/OtherDetails";
-import SetOtherInfo from "../components/Steppers/SetOtherInfo";
+import AddTitle from "../components/steppers/AddTitle";
+import OtherDetails from "../components/steppers/OtherDetails";
+import SetOtherInfo from "../components/steppers/SetOtherInfo";
 
 const PublishSteps = ()=>{    
     const activeStep = useSelector(state=>state.StepperReducer.activeStep)
