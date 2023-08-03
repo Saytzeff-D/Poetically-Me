@@ -2,7 +2,8 @@ import React, { Fragment } from "react";
 import Book from '../../assets/book.png'
 import { useNavigate } from "react-router";
 
-const Summary = ()=>{
+const Summary = (props)=>{
+    const { poem } = props
     const navigate = useNavigate()
     return (
         <Fragment>
@@ -13,13 +14,13 @@ const Summary = ()=>{
                 <hr />
                 <div className="d-flex flex-md-row flex-column">
                     <div className="me-md-3">
-                        <img src={Book} className="" />
+                        <img src={poem.coverImage} className="" />
                     </div>
                     <div className="ms-md-3">
                         <div className="d-flex justify-content-between w-100 flex-md-row flex-column">
                             <div>
-                                <p className="fs-4 fw-less-bold my-0">The Bubblegum</p>
-                                <p className="fs-6 fw-less-bold">By Eze Ifeanyi Anthony</p>
+                                <p className="fs-4 fw-less-bold my-0">{poem.title}</p>
+                                <p className="fs-6 fw-less-bold">By {poem.poet}</p>
                             </div>
                             <div>
                                 <button onClick={()=>navigate('/rights-and-pricing')} className="btn btn-next rounded-pill px-5">
@@ -35,7 +36,7 @@ const Summary = ()=>{
                                         Poem ID
                                     </td>
                                     <td className="fw-less-bold">
-                                        123456783
+                                        {poem.poem_id}
                                     </td>
                                 </tr>
                                 <tr>
@@ -51,7 +52,7 @@ const Summary = ()=>{
                                         ISBN
                                     </td>
                                     <td className="fw-less-bold">
-                                        345 - 278 - 694 - 84
+                                        {poem.ISBN}
                                     </td>
                                 </tr>
                                 <tr>
@@ -59,7 +60,7 @@ const Summary = ()=>{
                                         Vendor ID
                                     </td>
                                     <td className="fw-less-bold">
-                                        2354567377
+                                        {poem.user_id}
                                     </td>
                                 </tr>
                                 <tr>
