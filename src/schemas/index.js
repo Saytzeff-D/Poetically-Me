@@ -72,3 +72,10 @@ export const OtherDetailsSchema = yup.object().shape({
     ISBN: yup.string().required('All fields are required'),
     publicationDate: yup.string().required('All fields are required')
 })
+
+export const poemVisibilitySchema = yup.object().shape({
+    releaseDate: yup.string().required('All fields are required'),
+    baseCurrency: yup.string().required('All fields are required'),
+    price: yup.string().required('All fields are required'),
+    visibility: yup.string().required('All fields are required')
+})
