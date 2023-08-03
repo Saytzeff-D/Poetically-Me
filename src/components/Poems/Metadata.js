@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import Book from '../../assets/book.png'
 
-const Metadata = ()=>{
+const Metadata = (props)=>{
+    const { poem } = props
     return (
         <Fragment>
             <div className="container my-2">
@@ -17,7 +18,7 @@ const Metadata = ()=>{
                                     Poem Title
                                 </td>
                                 <td className="fw-less-bold">
-                                    The Bubblegum
+                                    {poem.title}
                                 </td>
                             </tr>
                             <tr>
@@ -25,7 +26,7 @@ const Metadata = ()=>{
                                     Poet
                                 </td>
                                 <td className="fw-less-bold">
-                                    Eze Ifeanyi
+                                    {poem.poet}
                                 </td>
                             </tr>
                             <tr>
@@ -33,7 +34,7 @@ const Metadata = ()=>{
                                     ISBN
                                 </td>
                                 <td className="fw-less-bold">
-                                    345 - 278 - 694 - 84
+                                    {poem.ISBN}
                                 </td>
                             </tr>
                             <tr>
@@ -41,7 +42,8 @@ const Metadata = ()=>{
                                     Description
                                 </td>
                                 <td className="fw-less-bold">
-                                    <p>
+                                    {poem.poem_desc}
+                                    {/* <p>
                                         Love and Nature
                                     </p>
                                     <p>
@@ -52,7 +54,7 @@ const Metadata = ()=>{
                                     </p>
                                     <p>
                                     Ut duis proin sagittis porta est ornare magnis ultrices sed. Enim blandit quis vitae ut eu est fusce fames ullamcorper. Ridiculus duis justo feugiat et nunc venenatis. Laoreet purus ipsum elementum urna lectus posuere. Elementum euismod quis dolor eget dui at suspendisse. In odio fermentum pretium posuere odio.
-                                    </p>
+                                    </p> */}
                                 </td>
                             </tr>
                             <tr>
@@ -60,7 +62,7 @@ const Metadata = ()=>{
                                     Language
                                 </td>
                                 <td className="fw-less-bold">
-                                    English
+                                    {poem.lang}
                                 </td>
                             </tr>
                             <tr>
@@ -68,57 +70,25 @@ const Metadata = ()=>{
                                     Publisher
                                 </td>
                                 <td className="fw-less-bold">
-                                    Iflex Publications
+                                    {poem.publisherName} Publications
                                 </td>
-                            </tr>
+                            </tr>                            
                             <tr>
                                 <td className="fs-5 fw-less-bold">
                                     Publication date
                                 </td>
                                 <td className="fw-less-bold">
-                                    July 8, 2023
+                                    {new Date(poem.publicationDate).toDateString()}
                                 </td>
-                            </tr>
-                            <tr>
-                                <td className="fs-5 fw-less-bold">
-                                    Publication date
-                                </td>
-                                <td className="fw-less-bold">
-                                    July 8, 2023
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="fs-5 fw-less-bold">
-                                    Poem name
-                                </td>
-                                <td className="fw-less-bold">
-                                    The Bubblegum
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="fs-5 fw-less-bold">
-                                    Stanza
-                                </td>
-                                <td className="fw-less-bold">
-                                    12
-                                </td>
-                            </tr>
+                            </tr>                            
                             <tr>
                                 <td className="fs-5 fw-less-bold">
                                     Category
                                 </td>
                                 <td className="fw-less-bold">
-                                    Romantic poem
+                                    {poem.category} Poem
                                 </td>
-                            </tr>
-                            <tr>
-                                <td className="fs-5 fw-less-bold">
-                                    Interest age
-                                </td>
-                                <td className="fw-less-bold">
-                                    16 years
-                                </td>
-                            </tr>
+                            </tr>                            
                         </tbody>
                     </table>
                 </div>
