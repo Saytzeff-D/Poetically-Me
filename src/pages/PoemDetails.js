@@ -1,18 +1,25 @@
-import React, { Fragment } from "react";
-import Header from "../components/Layouts/Header";
-import Footer from "../components/Layouts/Footer";
-import Summary from "../components/Poems/Summary";
-import Metadata from "../components/Poems/Metadata";
-import Book from '../assets/book.png'
+import React, { Fragment, useEffect, useState } from "react";
+import Header from "../components/layouts/Header";
+import Footer from "../components/layouts/Footer";
+import Summary from "../components/poems/Summary";
+import Metadata from "../components/poems/Metadata";
+import { useSelector } from "react-redux";
 
 const PoemDetails = ()=>{
+    const [poem, setPoem] = useState(useSelector(state=>state.PoemReducer.selectedPoem))
+    useEffect(()=>{
+        if (!poem) {        
+            setPoem(JSON.parse(sessionStorage.getItem('poem')))            
+        } else {            
+        }
+    }, [])
     return (
         <Fragment>
             <Header />
             {/* Summary */}
-            <Summary />
+            <Summary poem={poem} />
             {/* Metadata */}
-            <Metadata />
+            <Metadata poem={poem} />
             {/* Assets */}
             <div className="container my-5">
                 <p className="fs-5 fw-less-bold">
@@ -38,7 +45,7 @@ const PoemDetails = ()=>{
                                         </tr>
                                         <tr>
                                             <td className="fw-less-bold">Upload date</td>
-                                            <td>July 8, 2023</td>
+                                            <td>{new Date(poem.created_at).toDateString()}</td>
                                         </tr>
                                         <tr>
                                             <td></td>
@@ -51,7 +58,7 @@ const PoemDetails = ()=>{
                         <p className="my-4 fw-bold fs-5">
                           Cover Art  
                         </p>
-                        <img src={Book} className="" />
+                        <img src={poem.coverImage} className="" />
                     </div>
                 </div>
             </div>
