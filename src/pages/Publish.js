@@ -15,7 +15,7 @@ const Publish = ()=>{
                 <p className="px-2">
                     To upload your EPUB sign in with your poetically me details
                 </p>
-                <button onClick={()=> navigate('/join')} className="btn border border-dark border-1 w-100 text-next py-2">
+                <button onClick={()=> navigate('/join/in')} className="btn border border-dark border-1 w-100 text-next py-2">
                     Create Account
                 </button>
                 <button onClick={()=>{
