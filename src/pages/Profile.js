@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Header from "../components/Layouts/Header";
+import Header from "../components/layouts/Header";
 import ProfileBg from '../assets/profile.png'
-import Footer from "../components/Layouts/Footer";
+import Footer from "../components/layouts/Footer";
 import { Outlet, useNavigate } from "react-router";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,8 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import NoPicuture from '../assets/no_picture.png'
-import ProfileMenu from "../components/Layouts/ProfileMenu";
-import ProfileBar from "../components/Layouts/ProfileBar";
+import ProfileMenu from "../components/layouts/ProfileMenu";
+import ProfileBar from "../components/layouts/ProfileBar";
 import { useDispatch, useSelector } from "react-redux";
 import Backdrop from '@mui/material/Backdrop';
 import { CircularProgress } from "@mui/material";
