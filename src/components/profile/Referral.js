@@ -64,7 +64,7 @@ const Referrals = ()=>{
                     {hostName}
                 </a>
                 <div className="my-2">
-                    <button className="btn btn-outline-next d-xsm-none"><i className="fa fa-copy"></i> Copy</button>
+                    <button onClick={copyLink} className="btn btn-outline-next d-xsm-none"><i className="fa fa-copy"></i> Copy</button>
                 </div>
             </div>
             <Snackbar autoHideDuration={6000} anchorOrigin={{vertical: 'bottom', horizontal: 'center'}} open={open} onClose={handleClose} >
