@@ -8,14 +8,17 @@ import { Badge } from "@mui/material";
 
 const PoemBar = (props)=>{
     const api = useSelector(state=>state.ApiReducer.serverApi)
+    const cartArr = JSON.parse(sessionStorage.getItem('cart'))
     const [jwt, setJwt] = useState('')
     const navigate = useNavigate()
+    const [cartTray, setCartTray] = useState(0)
 
     const handlePublish = ()=>{
         navigate('/publish')
         sessionStorage.setItem('purpose', 'publish')
     }
     useEffect(()=>{
+        cartArr !== null ? setCartTray(JSON.parse(sessionStorage.getItem('cart')).length) : setCartTray(0)
         axios.get(`${api}user/currentUser`, {
             headers: {
                 'Authorization': `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
@@ -37,7 +40,7 @@ const PoemBar = (props)=>{
                 </div>
                 <div className="d-flex justify-content-between">
                     <div className="mt-3 mx-3 cursor-pointer" onClick={()=>navigate('/cart')} >
-                        <Badge badgeContent={4} color="secondary">
+                        <Badge badgeContent={cartTray} color="secondary">
                             <ShoppingCartIcon className="text-dark fs-4" />
                         </Badge>
                     </div>

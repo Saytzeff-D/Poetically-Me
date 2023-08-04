@@ -11,8 +11,12 @@ const Header = ()=>{
     const navigate = useNavigate()
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const currentUser = useSelector(state=>state.UserReducer.userInfo)
+    const cartArr = JSON.parse(sessionStorage.getItem('cart'))
     const [jwt, setJwt] = useState('')
+    const [cartTray, setCartTray] = useState(0)
+
     useEffect(()=>{
+        cartArr !== null ? setCartTray(JSON.parse(sessionStorage.getItem('cart')).length) : setCartTray(0)
         axios.get(`${api}user/currentUser`, {
             headers: {
                 'Authorization': `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
@@ -36,7 +40,7 @@ const Header = ()=>{
                 </div>
                 <div className="d-flex justify-content-between mt-3">
                     <div className="mt-3 mx-3 cursor-pointer" onClick={()=>navigate('/cart')}>
-                        <Badge badgeContent={4} color="secondary">
+                        <Badge badgeContent={cartTray} color="secondary">
                             <ShoppingCartIcon color="action" />
                         </Badge>
                     </div>
