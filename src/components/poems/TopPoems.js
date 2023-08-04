@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Explore from '../../assets/explore_poem.png'
 import Card1 from '../../assets/card1.png'
 import Card2 from '../../assets/card2.png'
@@ -9,9 +9,36 @@ import Card6 from '../../assets/card6.png'
 import Card7 from '../../assets/card7.png'
 import Card8 from '../../assets/card8.png'
 import { useNavigate } from "react-router";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { Skeleton, Alert } from "@mui/material";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const TopPoems = ()=>{
+    const api = useSelector(state=>state.ApiReducer.serverApi)
+    const token = JSON.parse(sessionStorage.getItem('token'))
+    const [isLoading, setIsLoading] = useState(true)
+    const [poems, setPoems] = useState([])
+    const [error, setError] = useState('')
     const navigate = useNavigate()
+    useEffect(()=>{
+        axios.get(
+            `${api}poem/top-poems`,            
+        ).then(res=>{
+            setError('')
+            setIsLoading(false)
+            setPoems(res.data.poems)
+            console.log(res.data)
+        }).catch(err=>{
+            setIsLoading(false)
+            console.log(err)
+            setError('Internal Server Error. Refresh this page')
+        })
+    }, [])
+    const showBook = (val)=>{
+        sessionStorage.setItem('book', JSON.stringify(val))
+        navigate('/home/picked')
+    }
     return (
         <Fragment>
             <div className="my-5">
@@ -35,10 +62,79 @@ const TopPoems = ()=>{
                     <p className="fs-4 fw-bold">
                         Top Poems
                     </p>
-                    {/* <div></div> */}
+                    <div>
+                        <p className="fs-5 fw-bold text-next">Filter</p>
+                    </div>
                 </div>
+                {
+                    isLoading
+                    ?
+                    <div className="container row w-100">
+                        <div className="col-md-3 my-2">
+                            <Skeleton variant="rectangular" height={200} />
+                        </div>
+                        <div className="col-md-3 my-2">
+                            <Skeleton variant="rectangular" height={200} />
+                        </div>
+                        <div className="col-md-3 my-2">
+                            <Skeleton variant="rectangular" height={200} />
+                        </div>
+                        <div className="col-md-3 my-2">
+                            <Skeleton variant="rectangular" height={200} />
+                        </div>
+                    </div>
+                    :
+                    poems.length !== 0
+                    ?
+                    <div className="container row w-100">
+                        {
+                            poems.map((val, i)=>(
+                                <div key={i} className="col-md-3 cursor-pointer" onClick={()=>showBook(val)}>
+                                    <div className="card border-0">
+                                        <img src={val.coverImage} className="card-img-top img-fluid poem-book" />
+                                        <div className="card-body">
+                                            <p className="card-title fs-5 fw-less-bold">
+                                                {val.title}
+                                            </p>
+                                            <div className="card-text">
+                                                <p className="">
+                                                    {val.poet}
+                                                </p>
+                                                <p className="">
+                                                    <i className="fa fa-star text-warning pe-2"></i>
+                                                    <i className="fa fa-star text-warning pe-2"></i>
+                                                    <i className="fa fa-star text-warning pe-2"></i>
+                                                    <i className="fa fa-star text-warning pe-2"></i>
+                                                    <i className="fa fa-star text-warning pe-2"></i> 2.3k
+                                                </p>
+                                                <p>
+                                                    {getSymbolFromCurrency(val.baseCurrency) + val.price}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>  
+                            ))
+                        }                  
+                    </div>
+                    :
+                    poems.length == 0 && error == ''
+                    ?
+                    <Alert severity="info">
+                        Sorry, page couldn't load
+                    </Alert>
+                    :
+                    ''
+                }
+                {
+                    error !== ''
+                    &&
+                    <Alert severity="error">
+                        {error}
+                    </Alert>
+                }
                 {/* Top Poems */}
-                <div className="row w-100">
+                {/* <div className="row w-100">
                     <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card1} className="card-img-top img-fluid" />
@@ -139,9 +235,9 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 {/*  */}
-                <div className="row w-100">
+                {/* <div className="row w-100">
                     <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card5} className="card-img-top img-fluid" />
@@ -242,7 +338,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </Fragment>
     )
