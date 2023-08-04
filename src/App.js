@@ -23,7 +23,6 @@ import PoemDetails from './pages/PoemDetails';
 import RightsAndPricing from './pages/Right-Pricing';
 import Completed from './pages/Completed';
 import SetPoemVisibility from './pages/SetPoemVisibility';
-import AccountOverview from './components/profile/AccountOverview';
 import MyLibrary from './components/profile/MyLibrary';
 import Statements from './components/profile/Statements';
 import Referrals from './components/profile/Referral';
@@ -33,6 +32,7 @@ import MyPoems from './components/profile/MyPoems';
 import Cart from './pages/Cart';
 import PickedPoem from './pages/PickedPoem';
 import TopPoems from './components/poems/TopPoems';
+import AccountOverview from './components/profile/AccountOverview';
 
 function App() {
   return (
