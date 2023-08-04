@@ -18,7 +18,6 @@ import Info from './components/create-account/Info';
 import Publish from './pages/Publish';
 import HowToPublish from './pages/HowToPublish';
 import PublishSteps from './pages/PublishSteps';
-import TopPoems from './components/poems/TopPoems';
 import Profile from './pages/Profile';
 import PoemDetails from './pages/PoemDetails';
 import RightsAndPricing from './pages/Right-Pricing';
@@ -33,6 +32,7 @@ import MyShop from './components/profile/MyShop';
 import MyPoems from './components/profile/MyPoems';
 import Cart from './pages/Cart';
 import PickedPoem from './pages/PickedPoem';
+import TopPoems from './components/poems/TopPoems';
 
 function App() {
   return (

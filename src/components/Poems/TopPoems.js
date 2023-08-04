@@ -8,8 +8,10 @@ import Card5 from '../../assets/card5.png'
 import Card6 from '../../assets/card6.png'
 import Card7 from '../../assets/card7.png'
 import Card8 from '../../assets/card8.png'
+import { useNavigate } from "react-router";
 
 const TopPoems = ()=>{
+    const navigate = useNavigate()
     return (
         <Fragment>
             <div className="my-5">
@@ -37,7 +39,7 @@ const TopPoems = ()=>{
                 </div>
                 {/* Top Poems */}
                 <div className="row w-100">
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card1} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -62,7 +64,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card2} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -87,7 +89,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card3} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -112,7 +114,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card4} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -140,7 +142,7 @@ const TopPoems = ()=>{
                 </div>
                 {/*  */}
                 <div className="row w-100">
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card5} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -165,7 +167,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card6} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -190,7 +192,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card7} className="card-img-top img-fluid" />
                             <div className="card-body">
@@ -215,7 +217,7 @@ const TopPoems = ()=>{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-3">
+                    <div className="col-md-3 cursor-pointer" onClick={()=>navigate('/home/picked')}>
                         <div className="card border-0">
                             <img src={Card8} className="card-img-top img-fluid" />
                             <div className="card-body">
