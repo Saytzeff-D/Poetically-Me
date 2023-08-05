@@ -33,6 +33,9 @@ body {
 .fs-7 {
     font-size: small;
 }
+.fs-8 {
+    font-size: smaller !important;
+}
 .text-next {
     color: #370A31 !important;
 }
