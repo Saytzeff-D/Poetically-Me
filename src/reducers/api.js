@@ -1,7 +1,7 @@
 const initState = {
     countryApi: 'https://api.countrystatecity.in/v1/countries/',
-    serverApi: 'https://poetically-server.onrender.com/'    
-    // http://localhost:9090/
+    serverApi: 'https://poetically-server.onrender.com/',   
+    // serverApi: 'http://localhost:9090/'
 }
 
 const ApiReducer = (state=initState, action)=>{
