@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Alert, Button, Snackbar } from "@mui/material";
 import getSymbolFromCurrency from "currency-symbol-map";
 import { useNavigate } from "react-router";
 
@@ -7,16 +7,38 @@ const PickedPoem = ()=>{
     const [book, setBook] = useState('')
     const pickedBook = JSON.parse(sessionStorage.getItem('book'))
     const navigate = useNavigate()
+    const [openSnackbar, setOpenSnackbar] = useState(false)
+    const [error, setError] = useState('')
     useEffect(()=>{
         pickedBook == null ? navigate('/home') : setBook(pickedBook)        
     }, [])
     const addToCart = ()=>{
         let arr = []
         const storedCart = JSON.parse(sessionStorage.getItem('cart'))
-        let newCart = storedCart == null ? [...arr, book] : [...storedCart, book]
-        sessionStorage.setItem('cart', JSON.stringify(newCart))
-        sessionStorage.removeItem('book')
-        navigate('/cart')
+        // let newCart = storedCart == null ? [...arr, book] : [...storedCart, book]
+        if (storedCart == null) {
+            let newCart = [...arr, book]
+            sessionStorage.setItem('cart', JSON.stringify(newCart))
+            sessionStorage.removeItem('book')
+            navigate('/cart')
+        } else {
+            let bookExistInCart = storedCart.find((each, i)=>(each.poem_id == book.poem_id))
+            if (bookExistInCart == undefined) {
+                let newCart = [...storedCart, book]
+                sessionStorage.setItem('cart', JSON.stringify(newCart))
+                sessionStorage.removeItem('book')
+                navigate('/cart')
+            } else {
+                setError('Item already in cart')
+                setOpenSnackbar(true)
+            }
+        }        
+    }
+    const handleClose = (event, reason)=>{
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpenSnackbar(false)
     }
     return (
         <Fragment>
@@ -45,6 +67,12 @@ const PickedPoem = ()=>{
                     </div>
                 </div>
             </div>
+
+            <Snackbar open={openSnackbar} onClose={handleClose} autoHideDuration={4000} anchorOrigin={{horizontal: 'center', vertical: 'bottom'}} >
+                <Alert severity="error" onClose={handleClose}>
+                    {error}
+                </Alert>
+            </Snackbar>
         </Fragment>
     )
 }
