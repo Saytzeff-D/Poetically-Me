@@ -3,31 +3,68 @@ import Header from "../components/layouts/Header";
 import Footer from "../components/layouts/Footer";
 import ProfileBg from '../assets/profile.png'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Alert, Button } from "@mui/material";
+import { Alert, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { usePaystackPayment } from "react-paystack";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import getSymbolFromCurrency from "currency-symbol-map";
+import currency from 'currency.js'
+import axios from "axios";
 
 const Cart = ()=>{
+    const api = useSelector(state=>state.ApiReducer.serverApi)
     const usersCart = JSON.parse(sessionStorage.getItem('cart'))
     const [cartTray, setCartTray] = useState([])
+    const currentUser = useSelector(state=>state.UserReducer.userInfo)
+    const [dialogOpen, setDialogOpen] = useState(false)
     const navigate = useNavigate()
+    const [totalAmount, setTotalAmount] = useState(0)
     const config = {
         reference: new Date().getTime().toString(),
-        email: 'ololadedavid15@gmail.com',
-        amount: '90999',
+        email: currentUser.email,
+        amount: totalAmount + '00',
         fullname: 'David',
         publicKey: 'pk_test_0a06aa24db1ed02e6787b0dc3ccd9caa537cbabc'
     }
-    const onSuccess = (reference)=>{}
+    const onSuccess = (reference)=>{
+        let poem_id = []
+        let seller_id = []
+        cartTray.map((each, i)=>{
+            poem_id = [...poem_id, each.poem_id]
+            seller_id = [...seller_id, each.user_id]
+        })
+        const payload = {trx_ref: reference.trxref, poem_id, buyer_id: currentUser.user_id, seller_id }
+        axios.post(`${api}transaction/addTransaction`, payload).then(res=>{
+            console.log(res.data)
+        }).catch(err=>{
+            console.log(err)
+        })
+        console.log(payload)
+    }
     const onClose = ()=>{}
     const initializePayment = usePaystackPayment(config)
     useEffect(()=>{
-        usersCart !== null ? setCartTray(usersCart) : setCartTray([])
+        // usersCart !== null ? setCartTray(usersCart) : setCartTray([])
+        if (usersCart !== null) {
+            setCartTray(usersCart)
+            usersCart.map((each, i)=>{
+                setTotalAmount(eval(parseInt(each.price) + totalAmount))
+            })
+        } else {
+            setCartTray([])
+        }
     }, [])
     const del = (i)=>{
         let delArray = cartTray.filter((each, ind)=> ind !== i)        
         setCartTray(delArray)
         sessionStorage.setItem('cart', JSON.stringify(delArray))
+    }
+    const checkOut = ()=>{
+        if (!config.email) {
+            setDialogOpen(true)
+        } else {
+            initializePayment(onSuccess, onClose) 
+        }
     }
     return(
         <Fragment>
@@ -73,15 +110,26 @@ const Cart = ()=>{
                                     <p className="fs-6">{cartTray.length} items in cart</p>
                                     <div className="d-flex justify-content-between">
                                         <p>Total: </p>
-                                        <strong className="fs-3 text-poetical-orange">$9,000</strong>
+                                        <strong data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" className="purecounter fs-3 text-poetical-orange">
+                                            {currency(totalAmount, {symbol: getSymbolFromCurrency('NGN')}).format()}
+                                        </strong>
                                     </div>
                                     <hr />
-                                    <Button onClick={()=>initializePayment(onSuccess, onClose)} className="btn-next rounded fw-bold py-2 px-5">CheckOut</Button>
+                                    <Button onClick={checkOut} className="btn-next rounded fw-bold py-2 px-5">CheckOut</Button>
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
+                <Dialog open={dialogOpen} className="" maxWidth={'xs'} fullWidth={true} >
+                    <DialogTitle className="text-dark fs-4 fw-light">
+                        You are not logged in...
+                    </DialogTitle>
+                    <DialogContent>
+                        <Button onClick={()=>navigate('/join/in')} className="btn-next mx-1 fs-8 fw-bold rounded-0">Create Account</Button>
+                        <Button onClick={()=>navigate('/login')} className="btn-next mx-1 fs-8 fw-bold rounded-0">Log In</Button>
+                    </DialogContent>
+                </Dialog>
             <Footer />
         </Fragment>
     )
