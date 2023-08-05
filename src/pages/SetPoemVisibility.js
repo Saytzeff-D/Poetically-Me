@@ -35,6 +35,7 @@ const SetPoemVisibility = ()=>{
             setOpen(true)
             setErrorSnackbar(false)
             values.releaseDate = new Date(values.releaseDate).toLocaleDateString()
+            values.poem_id = JSON.parse(sessionStorage.getItem('poem')).poem_id
             console.log(values)
             axios.put(`${api}poem/setVisibility`, values, {
                 headers: {
