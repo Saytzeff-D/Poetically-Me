@@ -12,6 +12,7 @@ const ProfileBar = ()=>{
     const currentUser = useSelector(state=>state.UserReducer.userInfo)
     const logout = ()=>{
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('cart')
         navigate('/home')
     }
     useEffect(()=>{
@@ -24,12 +25,12 @@ const ProfileBar = ()=>{
                     <img src={Logo} className="" height='70px' />
                 </div>
                 <div className="d-flex justify-content-between">
-                    <div className="mt-3 d-md-block d-none" onClick={()=>navigate('/cart')}>
+                    <div className="mt-3 d-md-block d-none mx-3 cursor-pointer" onClick={()=>navigate('/cart')}>
                         <Badge badgeContent={cartTray} color="secondary">
-                            <ShoppingCartIcon color="action" />
+                            <ShoppingCartIcon className="text-dark" />
                         </Badge>
                     </div>
-                    <div className="mt-3 d-md-block d-none">
+                    <div className="mt-3 d-md-block d-none mx-3">
                         <p className="mx-3"><i className="fa fa-bell text-dark fa-lg"></i></p>
                     </div>
                     <div className="dropdown cursor-pointer">
