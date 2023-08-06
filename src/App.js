@@ -33,6 +33,7 @@ import Cart from './pages/Cart';
 import PickedPoem from './pages/PickedPoem';
 import TopPoems from './components/poems/TopPoems';
 import AccountOverview from './components/profile/AccountOverview';
+import PrintBook from './pages/PrintBook';
 
 function App() {
   return (
@@ -88,6 +89,10 @@ function App() {
             element={<PickedPoem />}
           />
         </Route>
+        <Route 
+          path='/print-book'
+          element={<PrintBook />}
+        />
         <Route 
           path='/poem-details'
           element={<PoemDetails />}
