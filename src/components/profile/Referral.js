@@ -2,6 +2,9 @@ import { Alert, Snackbar } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
+import currency from "currency.js";
+import getSymbolFromCurrency from "currency-symbol-map";
 
 const Referrals = ()=>{
     const api = useSelector(state=>state.ApiReducer.serverApi)
@@ -10,8 +13,10 @@ const Referrals = ()=>{
     const [error, setError] = useState('')
     const [referralTray, setReferralTray] = useState([])
     const [open, setOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     useEffect(()=>{
         setHostName(window.location.host + '/join/' + currentUser.referralCode)
+        setIsLoading(true)
         axios.get(`${api}referral/myReferrals`, {
             headers: {
                 'authorization': `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
@@ -19,8 +24,10 @@ const Referrals = ()=>{
                 'accept': 'application/json'
             }
         }).then(res=>{
+            setIsLoading(false)
             setReferralTray(res.data.referrals)
         }).catch(err=>{
+            setIsLoading(false)
             console.log(err)
             !err.response ? setError(err.message) : setError(err.response.data.message)
         })
@@ -48,11 +55,31 @@ const Referrals = ()=>{
             <div className="bg-next shadow col-md-6 border rounded d-flex justify-content-between p-3 flex-md-row flex-column">
                 <div>
                     <p className="text-center">Earned Money</p>
-                    <p className="text-center fs-1 fw-bold">{referralTray.length * 500}</p>
+                    {
+                        isLoading
+                        ?
+                        <span className="spinner-border my-3"></span>
+                        :
+                        error !== ''
+                        ?
+                        <ReportGmailerrorredIcon className="text-danger" />
+                        :
+                        <p className="text-center fs-1 fw-bold">{currency(referralTray.length * 500, {symbol: getSymbolFromCurrency('NGN')}).format()}</p>
+                    }
                 </div>
                 <div>
                     <p className="text-center">Referred Friends</p>
-                    <p className="text-center fs-1 fw-bold">{referralTray.length}</p>
+                    {
+                        isLoading
+                        ?
+                        <span className="spinner-border my-3"></span>
+                        :
+                        error !== ''
+                        ?
+                        <ReportGmailerrorredIcon className="text-danger" />
+                        :
+                        <p className="text-center fs-1 fw-bold">{referralTray.length}</p>
+                    }
                 </div>
             </div>
             <div className="shadow col-md-6 border rounded my-4 p-3">
