@@ -4,8 +4,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useNavigate } from 'react-router';
 
 const SidebarList = ()=>{
+    const navigate = useNavigate()
     return (
         <>
             {/* Poems */}
@@ -20,7 +22,7 @@ const SidebarList = ()=>{
             </List>
             <List>
                 <ListItem disablePadding>
-                    <ListItemButton >
+                    <ListItemButton onClick={()=>navigate('/home')} >
                         <ListItemIcon>
                         </ListItemIcon>
                         <ListItemText>
