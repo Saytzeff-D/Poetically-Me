@@ -3,7 +3,7 @@ import Header from "../components/layouts/Header";
 import Footer from "../components/layouts/Footer";
 import ProfileBg from '../assets/profile.png'
 import DeleteIcon from '@mui/icons-material/Delete';
-import { Alert, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { Alert, Backdrop, Button, Dialog, DialogContent, DialogTitle } from "@mui/material";
 import { usePaystackPayment } from "react-paystack";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
@@ -19,6 +19,7 @@ const Cart = ()=>{
     const [dialogOpen, setDialogOpen] = useState(false)
     const navigate = useNavigate()
     const [totalAmount, setTotalAmount] = useState(0)
+    const [isBackdrop, setIsBackdrop] = useState(false)
     const config = {
         reference: new Date().getTime().toString(),
         email: currentUser.email,
@@ -27,6 +28,7 @@ const Cart = ()=>{
         publicKey: 'pk_test_0a06aa24db1ed02e6787b0dc3ccd9caa537cbabc'
     }
     const onSuccess = (reference)=>{
+        setIsBackdrop(true)
         let poem_id = []
         let seller_id = []
         cartTray.map((each, i)=>{
@@ -36,10 +38,13 @@ const Cart = ()=>{
         const payload = {trx_ref: reference.trxref, poem_id, buyer_id: currentUser.user_id, seller_id }
         axios.post(`${api}transaction/addTransaction`, payload).then(res=>{
             console.log(res.data)
+            sessionStorage.setItem('print', JSON.stringify(usersCart))
+            sessionStorage.removeItem('cart')
+            setIsBackdrop(false)
+            navigate('/print-book')
         }).catch(err=>{
             console.log(err)
         })
-        console.log(payload)
     }
     const onClose = ()=>{}
     const initializePayment = usePaystackPayment(config)
@@ -47,8 +52,13 @@ const Cart = ()=>{
         // usersCart !== null ? setCartTray(usersCart) : setCartTray([])
         if (usersCart !== null) {
             setCartTray(usersCart)
+            let totalPrice = 0
             usersCart.map((each, i)=>{
-                setTotalAmount(eval(parseInt(each.price) + totalAmount))
+                totalPrice += parseInt(each.price)
+                console.log(totalPrice)
+                // console.log(parseInt(each.price) + totalAmount)
+                setTotalAmount(totalPrice)
+                // setTotalAmount(eval(parseInt(each.price) + totalAmount))
             })
         } else {
             setCartTray([])
@@ -58,6 +68,7 @@ const Cart = ()=>{
         let delArray = cartTray.filter((each, ind)=> ind !== i)        
         setCartTray(delArray)
         sessionStorage.setItem('cart', JSON.stringify(delArray))
+        setTotalAmount(totalAmount - parseInt(cartTray[i].price))
     }
     const checkOut = ()=>{
         if (!config.email) {
@@ -104,6 +115,7 @@ const Cart = ()=>{
                                         </tbody>
                                     </table>
                                 </div>
+                                <Button onClick={()=>navigate('/home')} className="btn bg-poetical-orange text-white fw-bold">Add more Poems</Button>
                             </div>
                             <div className="col-md-4">
                                 <div className="border rounded p-3">
@@ -131,6 +143,9 @@ const Cart = ()=>{
                     </DialogContent>
                 </Dialog>
             <Footer />
+            <Backdrop open={isBackdrop} >
+                <span className="spinner-border text-white"></span>
+            </Backdrop>
         </Fragment>
     )
 }
