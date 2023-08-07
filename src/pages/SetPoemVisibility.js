@@ -37,7 +37,7 @@ const SetPoemVisibility = ()=>{
             values.releaseDate = new Date(values.releaseDate).toLocaleDateString()
             values.poem_id = JSON.parse(sessionStorage.getItem('poem')).poem_id
             console.log(values)
-            axios.put(`${api}poem/setVisibility`, values, {
+            axios.put(`${api}shop/setVisibility`, values, {
                 headers: {
                     'Authorization': `Bearer ${JSON.parse(sessionStorage.getItem('token'))}`,
                     'Content-Type': 'application/json'
