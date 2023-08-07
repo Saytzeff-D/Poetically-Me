@@ -32,8 +32,10 @@ const Login = ()=>{
                         navigate('/publish-steps')
                     } else if(purpose == 'publish' && !sessionStorage.getItem('action')) {
                         navigate('/how-to-publish')
-                    } else
-                    navigate('/profile')
+                    } else if(purpose == 'library' && !sessionStorage.getItem('action')){
+                        navigate('/home/picked')
+                    }else
+                        navigate('/profile')
                 } else {
                     setIsLoading(false)
                     setError(res.data.message)
