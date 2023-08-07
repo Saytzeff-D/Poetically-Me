@@ -11,7 +11,7 @@ const MyShop = ()=>{
     const [isLoading, setIsLoading] = useState(true)
     useEffect(()=>{
         axios.get(
-            `${api}poem/my-shop`,
+            `${api}shop/my-shop`,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
