@@ -50,9 +50,10 @@ const PickedPoem = ()=>{
                         <div className="mb-4">
                             <img src={book.coverImage} />
                         </div>
-                        <span className="bg-poetical-orange py-2 px-4 rounded-pill text-white fs-5 mb-5">
-                           Buy | {getSymbolFromCurrency(book.baseCurrency) + book.price}
-                        </span>
+                        <Button className="bg-poetical-orange text-dark fw-bold py-2 px-4 border-0">
+                           {/* Buy | {getSymbolFromCurrency(book.baseCurrency) + book.price} */}
+                           Add to Library
+                        </Button>
                     </div>
                     <div className="col-md-8 border-start my-5 my-md-0">                        
                         <p>Title: <span className="fw-light">{book.title}</span></p>
