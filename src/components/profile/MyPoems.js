@@ -15,8 +15,14 @@ const MyPoems = ()=>{
     const navigate = useNavigate()
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const token = JSON.parse(sessionStorage.getItem('token'))
+    const [ind, setInd] = useState(0)
+    const [isDisabled, setIsDisabled] = useState(false)
     const [dialogOpen, setDialogOpen] = useState(false)
+    const [visibility, setVisibility] = useState('')
     useEffect(()=>{
+        fetchPoems()
+    }, [])
+    const fetchPoems = ()=>{
         axios.get(
             `${api}poem/my-poems`,
             {
@@ -35,24 +41,41 @@ const MyPoems = ()=>{
             console.log(err)
             setError('Internal Server Error. Refresh this page')
         })
-    }, [])
-    const clickPoem = (poem)=>{
+    }
+    const clickPoem = (poem, i)=>{
         if (poem.visibility == null) {
             dispatch({type: 'summary', payload: poem})
             sessionStorage.setItem('poem', JSON.stringify(poem))
             navigate('/poem-details')
         } else {
+            poem.visibility == 'Only Me' ? setVisibility('Everybody') : setVisibility('Only Me')
+            setInd(i)
             setDialogOpen(true)
         }
     }
     const onNoClick = ()=>{
         setDialogOpen(false)
     }
+    const onYesClick= ()=>{
+        setIsDisabled(true)
+        let payload = {poem_id: poems[ind].poem_id, visibility}
+        axios.patch(`${api}shop/changeVisibility`, payload).then(res=>{       
+            fetchPoems() 
+            setIsDisabled(false)
+            setDialogOpen(false)
+        }).catch(err=>{
+            console.log(err)
+            setIsDisabled(false)
+        })
+    }
     return (
         <Fragment>
             <div className="container">                
                 <p className="fs-4 fw-normal">
                     My Poems
+                </p>
+                <p className="fs-6 fw-light">
+                    Click on the poem you wish to perform further transaction with.
                 </p>
                 <p className="fs-5 fw-normal pt-4">
                     Recent Activity
@@ -81,7 +104,7 @@ const MyPoems = ()=>{
                     <div className="container row w-100">
                         {
                             poems.map((val, i)=>(
-                                <div key={i} className="col-md-3 cursor-pointer" onClick={()=>clickPoem(val)}>
+                                <div key={i} className="col-md-3 cursor-pointer" onClick={()=>clickPoem(val, i)}>
                                     <div className="card border-0">
                                         <img src={val.coverImage} className="card-img-top img-fluid poem-book" />
                                         <div className="card-body">
@@ -114,10 +137,24 @@ const MyPoems = ()=>{
             <Dialog open={dialogOpen} className="" maxWidth={'xs'} fullWidth={true}>
                 <DialogContent className="fs-5 fw-light bg-next">
                 <DialogTitle className="fs-4 fw-bold">Visibility Status</DialogTitle>
-                    <p className="my-0 ps-4 fs-6">This poem has already been placed in your shop for sale. Will you like to privatise it?</p>
+                    {
+                        poems[ind] !== undefined && poems[ind].visibility == 'Only Me'
+                        ?
+                        <p className="my-0 ps-4 fs-6">Only you can see this poem. Will you like to publicize it for other users to buy?</p>
+                        :
+                        <p className="my-0 ps-4 fs-6">This poem has already been placed in your shop for sale. Will you like to privatise it?</p>
+                    }
                 <DialogActions>
-                    <button className="btn py-2 px-3 btn-dark">Yes</button>
-                    <button onClick={onNoClick} className="btn py-2 px-3 btn-light">No</button>
+                    <button onClick={onYesClick} className="btn py-2 px-3 btn-dark" disabled={isDisabled}>
+                        {
+                            isDisabled
+                            ?
+                            <>Please wait...</>
+                            :
+                            <>Yes</>
+                        }
+                    </button>
+                    <button onClick={onNoClick} className="btn py-2 px-3 btn-light" disabled={isDisabled}>No</button>
                 </DialogActions>
                 </DialogContent>
             </Dialog>
