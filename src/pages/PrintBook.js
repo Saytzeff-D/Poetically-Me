@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React, { Fragment, useEffect, useState } from "react"
 import Footer from "../components/layouts/Footer"
 import Header from "../components/layouts/Header"
 import getSymbolFromCurrency from "currency-symbol-map"
@@ -7,7 +7,11 @@ import { useNavigate } from "react-router"
 
 const PrintBook = ()=>{
     const navigate = useNavigate()
-    const book = JSON.parse(sessionStorage.getItem('print'))
+    const [book, setBook] = useState([])
+    useEffect(()=>{
+        const printBook = JSON.parse(sessionStorage.getItem('print'))
+        printBook !== null ? setBook(printBook) : navigate('/home')
+    }, [])
     return(
         <Fragment>
              <div className="container mt-5">
@@ -29,7 +33,9 @@ const PrintBook = ()=>{
                                 <p>ISBN: <span className="fw-light">{each.ISBN}</span></p>
                                 <p>Description: <span className="fw-light">{each.poem_desc}</span></p>
                                 <div className="d-flex justify-content-end">
-                                    <Button className="btn-next fw-bold py-2 px-4 border-0">Print</Button>
+                                    <a href={each.bookFile.split('upload')[0] + 'upload/fl_attachment:' + each.title + each.bookFile.split('upload')[1]} download={true}>
+                                        <Button className="btn-next fw-bold py-2 px-4 border-0">Print</Button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
