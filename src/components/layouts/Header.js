@@ -32,6 +32,7 @@ const Header = ()=>{
         })
     }, [])
     const logout = ()=>{
+        dispatch({type: 'userInfo', payload: {}})
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('cart')
         navigate('/home')

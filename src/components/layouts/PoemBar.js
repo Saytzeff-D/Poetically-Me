@@ -2,11 +2,12 @@ import React, { Fragment, useEffect, useState } from "react";
 import User from '../../assets/user.png'
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from "@mui/material";
 
 const PoemBar = (props)=>{
+    const dispatch = useDispatch()
     const api = useSelector(state=>state.ApiReducer.serverApi)
     const cartArr = JSON.parse(sessionStorage.getItem('cart'))
     const [jwt, setJwt] = useState('')
@@ -27,6 +28,7 @@ const PoemBar = (props)=>{
         }).then(res=>{
             console.log(res.data)
             setJwt(res.data.user)
+            dispatch({type: 'userInfo', payload: res.data.user})
         }).catch(err=>{
             setJwt('')
         })

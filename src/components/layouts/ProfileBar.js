@@ -1,16 +1,18 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Logo from '../../assets/poetically-me.png'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge } from "@mui/material";
 
 const ProfileBar = ()=>{
+    const dispatch = useDispatch()
     const cartArr = JSON.parse(sessionStorage.getItem('cart'))
     const [cartTray, setCartTray] = useState(0)
     const navigate = useNavigate()
     const currentUser = useSelector(state=>state.UserReducer.userInfo)
     const logout = ()=>{
+        dispatch({type: 'userInfo', payload: {}})
         sessionStorage.removeItem('token')
         sessionStorage.removeItem('cart')
         navigate('/home')
