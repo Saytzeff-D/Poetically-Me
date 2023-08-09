@@ -1,13 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Explore from '../../assets/explore_poem.png'
-import Card1 from '../../assets/card1.png'
-import Card2 from '../../assets/card2.png'
-import Card3 from '../../assets/card3.png'
-import Card4 from '../../assets/card4.png'
-import Card5 from '../../assets/card5.png'
-import Card6 from '../../assets/card6.png'
-import Card7 from '../../assets/card7.png'
-import Card8 from '../../assets/card8.png'
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useSelector } from "react-redux";
