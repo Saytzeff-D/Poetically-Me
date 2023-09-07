@@ -1,5 +1,6 @@
 {
   "name": "poet-app",
+  "homepage": "https://poetically.me",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
