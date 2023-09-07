@@ -86,7 +86,7 @@ const Cart = ()=>{
                         <p className="fs-2">Cart</p>
                     </div>
                     {
-                        cartTray.length == 0
+                        cartTray.length === 0
                         ?
                         <div>
                             <Alert severity="info" className="col-md-6">

@@ -19,6 +19,7 @@
 .env.production.local
 .htaccess
 poetically.zip
+build.zip
 
 npm-debug.log*
 yarn-debug.log*

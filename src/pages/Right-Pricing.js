@@ -12,7 +12,7 @@ const RightsAndPricing = ()=>{
             setPoem(JSON.parse(sessionStorage.getItem('poem')))            
         } else {            
         }
-    }, [])
+    }, [poem])
     return (
         <Fragment>
             <Header />
@@ -23,7 +23,7 @@ const RightsAndPricing = ()=>{
                 <hr />
                 <div className="d-flex flex-md-row flex-column">
                     <div className="me-md-3">
-                        <img src={poem.coverImage} className="" />
+                        <img src={poem.coverImage} className="" alt='coverImg' />
                     </div>
                     <div className="ms-md-3">
                         <div className="table-responsive"></div>

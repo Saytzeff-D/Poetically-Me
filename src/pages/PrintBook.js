@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react"
 import Footer from "../components/layouts/Footer"
-import Header from "../components/layouts/Header"
-import getSymbolFromCurrency from "currency-symbol-map"
+// import getSymbolFromCurrency from "currency-symbol-map"
 import { Button } from "@mui/material"
 import { useNavigate } from "react-router"
 
@@ -11,7 +10,7 @@ const PrintBook = ()=>{
     useEffect(()=>{
         const printBook = JSON.parse(sessionStorage.getItem('print'))
         printBook !== null ? setBook(printBook) : navigate('/home')
-    }, [])
+    }, [navigate])
     const printBook = (bookUrl)=>{
         window.open(`https://docs.google.com/viewer?url=${bookUrl}`)
     }
@@ -25,7 +24,7 @@ const PrintBook = ()=>{
                         <div className="row w-100 my-5 border-bottom pb-2">
                             <div className="col-md-4 pb-3">
                                 <div className="mb-4">
-                                    <img src={each.coverImage} />
+                                    <img src={each.coverImage} alt='cover' />
                                 </div>                               
                             </div>
                             <div className="col-md-8 border-start my-5 my-md-0">                        

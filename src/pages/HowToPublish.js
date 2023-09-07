@@ -16,7 +16,7 @@ const HowToPublish = ()=>{
         },
         validationSchema: howToPublishSchema,
         onSubmit: (values)=>{
-            if (values.how == 'Submit') {
+            if (values.how === 'Submit') {
                 navigate('/publish-steps')
             } else {
                 navigate('/profile/my-poems')
@@ -26,7 +26,7 @@ const HowToPublish = ()=>{
     return (
         <div className="d-flex justify-content-center pt-md-5 pt-3 mt-md-4 mx-md-0 mx-4">
             <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
-                <img src={Logo} className="img-fluid" />
+                <img src={Logo} className="img-fluid" alt='logo' />
                 <p className="fw-bold fs-4">
                     Choose how to publish
                 </p>

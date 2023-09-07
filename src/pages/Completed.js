@@ -9,7 +9,7 @@ const Completed = ()=>{
             <div className="d-flex justify-content-center">
                 <div className="col-md-4">
                     <div className="d-flex justify-content-center px-5 py-3">
-                        <img src={Complete} className="img-fluid" />
+                        <img src={Complete} className="img-fluid" alt='complete' />
                     </div>
                     <p className="text-center fs-3 fw-bold">Completed!</p>
                     <p className="text-center fs-5 fw-less-bold px-3">

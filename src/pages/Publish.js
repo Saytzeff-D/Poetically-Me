@@ -8,7 +8,7 @@ const Publish = ()=>{
     return (
         <div className="d-flex justify-content-center pt-5 mt-4 mx-4 mx-md-0">
             <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
-                <img src={Logo} className="img-fluid" />
+                <img src={Logo} className="img-fluid" alt='logo' />
                 <p className="fw-bold fs-4">
                     Publish to Poetically Me
                 </p>
@@ -26,7 +26,7 @@ const Publish = ()=>{
                 </button>
                 <hr className="my-0" />
                 <p className="pt-2 mb-0 pb-0 fs-7">
-                    Already a member? <a onClick={()=>{
+                    Already a member? <a href="#" onClick={()=>{
                         sessionStorage.setItem('purpose', 'login')
                         navigate('/login')
                     }} className="text-decoration-none cursor-pointer">Sign In</a>

@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { Alert, Button, Dialog, DialogContent, DialogTitle, Snackbar } from "@mui/material";
-import getSymbolFromCurrency from "currency-symbol-map";
+// import getSymbolFromCurrency from "currency-symbol-map";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -17,7 +17,7 @@ const PickedPoem = ()=>{
     const [isLoading, setIsLoading] = useState(false)
     useEffect(()=>{
         pickedBook == null ? navigate('/home') : setBook(pickedBook)        
-    }, [])
+    }, [navigate, pickedBook])
     const addToCart = ()=>{
         let arr = []
         const storedCart = JSON.parse(sessionStorage.getItem('cart'))
@@ -28,8 +28,8 @@ const PickedPoem = ()=>{
             sessionStorage.removeItem('book')
             navigate('/cart')
         } else {
-            let bookExistInCart = storedCart.find((each, i)=>(each.poem_id == book.poem_id))
-            if (bookExistInCart == undefined) {
+            let bookExistInCart = storedCart.find((each, i)=>(each.poem_id === book.poem_id))
+            if (bookExistInCart === undefined) {
                 let newCart = [...storedCart, book]
                 sessionStorage.setItem('cart', JSON.stringify(newCart))
                 sessionStorage.removeItem('book')
@@ -48,7 +48,7 @@ const PickedPoem = ()=>{
     }
     const addToLibrary = ()=>{
         let payload = { poem_id: book.poem_id, reader_id: currentUser.user_id }
-        if (currentUser.user_id == undefined) {
+        if (currentUser.user_id === undefined) {
             setDialogOpen(true)
         } else {
             setIsLoading(true)
@@ -72,7 +72,7 @@ const PickedPoem = ()=>{
                 <div className="row w-100 my-5 border-bottom">
                     <div className="col-md-4 pb-3">
                         <div className="mb-4">
-                            <img src={book.coverImage} />
+                            <img src={book.coverImage} alt='cover' />
                         </div>
                         <Button onClick={addToLibrary} disabled={isLoading} className="bg-poetical-orange text-dark fw-bold py-2 px-4 border-0">                           
                            {

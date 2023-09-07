@@ -9,9 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
-import NoPicuture from '../assets/no_picture.png'
 import ProfileMenu from "../components/layouts/ProfileMenu";
 import ProfileBar from "../components/layouts/ProfileBar";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,7 +46,7 @@ const Profile = (props)=>{
             navigate('/login')
             // console.log(err)
         })
-    }, [])
+    }, [api, dispatch, navigate])
 
     const handleDrawerToggle = ()=>{
         setMobileOpen(!mobileOpen)
@@ -69,7 +67,7 @@ const Profile = (props)=>{
         <Fragment>  
             <Header />
             <div className="d-lg-none d-block">
-                <img src={ProfileBg} className="img-fluid" />
+                <img src={ProfileBg} className="img-fluid" alt='profile' />
             </div>
             <Box sx={{display: 'flex'}}>
                 <CssBaseline />

@@ -27,12 +27,12 @@ const Login = ()=>{
                 console.log(res.data)
                 sessionStorage.setItem('token', JSON.stringify(res.data.token))
                 if (res.data.status) {                
-                    if (purpose == 'publish' && sessionStorage.getItem('action') == 'aboutPublishing') {
+                    if (purpose === 'publish' && sessionStorage.getItem('action') === 'aboutPublishing') {
                         dispatch({type: 'nextStep', payload: 3})
                         navigate('/publish-steps')
-                    } else if(purpose == 'publish' && !sessionStorage.getItem('action')) {
+                    } else if(purpose === 'publish' && !sessionStorage.getItem('action')) {
                         navigate('/how-to-publish')
-                    } else if(purpose == 'library' && !sessionStorage.getItem('action')){
+                    } else if(purpose === 'library' && !sessionStorage.getItem('action')){
                         navigate('/home/picked')
                     }else
                         navigate('/profile')
@@ -54,7 +54,7 @@ const Login = ()=>{
     return (
         <div className="d-flex justify-content-center pt-5 mt-md-4 mx-4 mx-md-0">
             <div className="col-md-5 col-lg-3 text-center animate__animated animate__slow animate__fadeIn">
-                <img src={Logo} className="img-fluid" />
+                <img src={Logo} className="img-fluid" alt='cover' />
                 <p className="fw-bold fs-4">
                     Sign in to your account
                 </p>
@@ -81,7 +81,7 @@ const Login = ()=>{
                     {formik.errors.password && formik.touched.password && <div className="text-danger text-start">{formik.errors.password}</div>}
                     <button onClick={formik.handleSubmit} className={isLoading ? 'btn disabled text-next w-100 my-3 py-2' : 'btn btn-next text-white w-100 my-3 py-2'}>
                         {
-                            purpose == 'publish'
+                            purpose === 'publish'
                             ?
                             'Continue'
                             :

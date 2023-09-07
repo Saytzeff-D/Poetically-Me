@@ -5,7 +5,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
 import Logo from '../assets/poetically-me.png'
 import SidebarList from "../components/layouts/SidebarList";

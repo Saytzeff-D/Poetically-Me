@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
@@ -17,7 +17,7 @@ const PublishSteps = ()=>{
             <div className="d-flex justify-content-center mt-md-5 pb-md-0 pb-5">
                 <div className="col-md-6 col-lg-4 animate__animated animate__slow animate__fadeIn">
                     <div className="d-flex justify-content-center">
-                        <img src={Logo} className="img-fluid" />
+                        <img src={Logo} className="img-fluid" alt='logo' />
                     </div>
                     <p className="my-1 text-center fw-bold fs-5">
                         Publish poem in 4 easy steps
@@ -37,19 +37,19 @@ const PublishSteps = ()=>{
                         </Step>
                     </Stepper>
                     {
-                        activeStep == 0
+                        activeStep === 0
                         ?
                         <UploadPoem />
                         :
-                        activeStep == 1
+                        activeStep === 1
                         ?
                         <AddTitle />
                         :
-                        activeStep == 2
+                        activeStep === 2
                         ?
                         <SetOtherInfo />
                         :
-                        activeStep == 3
+                        activeStep === 3
                         ?
                         <OtherDetails />
                         :

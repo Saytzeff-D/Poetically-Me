@@ -12,7 +12,7 @@ const PoemDetails = ()=>{
             setPoem(JSON.parse(sessionStorage.getItem('poem')))            
         } else {            
         }
-    }, [])
+    }, [poem])
     return (
         <Fragment>
             <Header />
@@ -58,7 +58,7 @@ const PoemDetails = ()=>{
                         <p className="my-4 fw-bold fs-5">
                           Cover Art  
                         </p>
-                        <img src={poem.coverImage} className="" />
+                        <img src={poem.coverImage} className="" alt='çover' />
                     </div>
                 </div>
             </div>
